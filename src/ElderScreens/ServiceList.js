@@ -1,5 +1,6 @@
 import { SafeAreaView, Text, StyleSheet, View, TouchableOpacity, Image, Dimensions } from 'react-native'
 import React, { useEffect, useState } from 'react'
+
 import home from '../assets/home.png'
 import back from '../assets/back.png'
 
@@ -24,16 +25,17 @@ export default function ServiceList({ route, navigation }) {
   useEffect(() => { getTypeList() }, []);
 
   return (
-    <SafeAreaView style={styles.container}>
-
+    <View style={styles.container}>
       {/* header section: backIcon, pageTitle, homeIcon */}
       <View style={styles.header}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Image source={back} style={styles.backIcon} />
-        </TouchableOpacity>
-        <Text style={styles.pageTitle}>{route.params.msg}</Text>
+        <View style={{flexDirection: "row"}}>
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <Image source={back} style={styles.backIcon} />
+          </TouchableOpacity>
+          <Text style={styles.pageTitle}>{route.params.msg}</Text>
+          </View>
         <TouchableOpacity onPress={() => navigation.navigate("Home")}>
-          <Image source={home} style={styles.homeIcon} />
+          <Image source={home} style={styles.homeIcon}/>
         </TouchableOpacity>
       </View>
       <View style={{height: 10}}/>
@@ -57,7 +59,7 @@ export default function ServiceList({ route, navigation }) {
           )
         }
       })}
-    </SafeAreaView>
+    </View>
   )
 }
 
@@ -69,12 +71,11 @@ const styles = StyleSheet.create({
   },
   header: {
     flexDirection: "row", 
-    marginTop: 20,
+    marginTop: 65,
     // backgroundColor: "black",
     justifyContent: "space-between",
     alignSelf: "center",
     width: Math.round(Dimensions.get('window').width) - 55,
-    alignItems: "center",
   },
   pageTitle: {
     fontSize: 35, 
@@ -82,21 +83,21 @@ const styles = StyleSheet.create({
     fontFamily: "Avenir Next",
     color: "#6f5643",
     letterSpacing: 2,
-    marginRight: 240,
+    // marginRight: 190,
     justifyContent: "center",
   },
   homeIcon: {
     tintColor: "#6f5643",
     width: 35,
     height: 35,
-    marginTop: 6
+    marginTop: 8
   },
   backIcon: {
     tintColor: "#6f5643",
-    width: 30,
+    width: 20,
     height: 30,
     marginRight: 10,
-    marginTop: 5
+    marginTop: 11,
   },
   button: {
     flexDirection: "row",
@@ -104,7 +105,9 @@ const styles = StyleSheet.create({
     alignSelf: "stretch",
     borderRadius: 10,
     marginHorizontal: 20,
-    marginVertical: 15, 
+    width: Math.round(Dimensions.get('window').width) - 55,
+    alignSelf: "center",
+    marginBottom: 15
   },
   buttonText: {
     fontSize: 28,

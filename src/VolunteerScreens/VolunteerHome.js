@@ -22,14 +22,8 @@ export default function VolunteerHome({ route, navigation }) {
       "確認", 
       "是否要登出?",
       [
-        {
-          text: "是", 
-          onPress: () => navigation.navigate("SignIn")
-        },
-        {
-          text: "否", 
-          onPress: () => console.log("No Pressed")
-        }
+        {text: "是", onPress: () => navigation.navigate("SignIn")},
+        {text: "否", onPress: () => console.log("No Pressed")}
       ]
     )
   }
@@ -42,6 +36,7 @@ export default function VolunteerHome({ route, navigation }) {
           <Image source={logout} style={styles.logout} />
         </TouchableOpacity>
       </View>
+      <View style={{height: 10}}/>
       <FunctionTab text="待接服務" description="查看正在等待的服務" screen="UnpickedOrders" icon={service} id={helperID}/>
       <FunctionTab text="歷史訂單" description="查看所有訂單記錄" screen="ServiceRecord" icon={orders} id={helperID}/>
       <FunctionTab text="遊戲" description="活動大腦" screen="Chat" icon={game} />

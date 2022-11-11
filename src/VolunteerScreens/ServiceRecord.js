@@ -16,6 +16,7 @@ import user from '../assets/user.png'
 import checked from '../assets/checked.png'
 import line from '../assets/line.png'
 import status from '../assets/status.png'
+import back from '../assets/back.png'
 
 export default function ServiceRecord({ route, navigation }) {
 
@@ -43,18 +44,38 @@ export default function ServiceRecord({ route, navigation }) {
 
   return (
     <View style={styles.container}>
+      <View style={styles.header}>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Image source={back} style={styles.backIcon} />
+        </TouchableOpacity>
+        <Text style={styles.pageTitle}>歷史訂單</Text>
+      </View>
       <ScrollView showsVerticalScrollIndicator={false} style={{width: Math.round(Dimensions.get('window').width), paddingHorizontal: 25}}>
-        <View style={styles.header}>
-          <Text style={styles.pageTitle}>歷史訂單</Text>
-          <TouchableOpacity onPress={() => navigation.goBack()}>
-            <Image source={home} style={styles.homeIcon} />
-          </TouchableOpacity>
-        </View>
+        
         <View style={{height: 20}}></View>
 
         {order.map((type, index) => {
+          const imgUrl = route.params.baseUrl + '/' + type.imagePath
           return(
-            <TouchableOpacity key={index} style={styles.recordCard} onPress={() => navigation.navigate("RecordDetail", {stat: type.statu, userID: route.params.userID, orderID: type.id})}>
+            <TouchableOpacity 
+              key={index} 
+              style={styles.recordCard} 
+              onPress={() => navigation.navigate(
+                "RecordDetail", {
+                  stat: type.statu, 
+                  userID: route.params.userID, 
+                  orderID: type.id,
+                  id: type.orderId, 
+                  detail: type.typeDetail,
+                  time: type.exeTime,
+                  name: type.elderName,
+                  descript: type.descript,
+                  place: type.place,
+                  helper: route.params.userID,
+                  img: imgUrl,
+                }
+              )}
+            >
               <Text key={index} style={styles.recordTitle}>{type.exeTime.substring(5, 7)}月{type.exeTime.substring(8, 10)}日  |  {type.exeTime.substring(11, 16)}</Text>
               <View style={{flexDirection: "row", marginLeft: 10}}>
                 <Image source={checked} style={styles.recordIcon}/>
@@ -101,9 +122,10 @@ const styles = StyleSheet.create({
     flexDirection: "row", 
     marginTop: 70,
     // backgroundColor: "black",
-    justifyContent: "space-between",
+    justifyContent: "flex-start",
     alignSelf: "center",
     width: Math.round(Dimensions.get('window').width) - 55,
+    alignItems: "center",
   },
   pageTitle: {
     fontSize: 35, 
@@ -111,12 +133,14 @@ const styles = StyleSheet.create({
     fontFamily: "Avenir Next",
     color: "#6f5643",
     letterSpacing: 2,
+    marginRight: 20,
+    justifyContent: "center",
   },
-  homeIcon: {
+  backIcon: {
     tintColor: "#6f5643",
-    width: 35,
-    height: 35,
-    marginTop: 8
+    width: 30,
+    height: 30,
+    marginRight: 10,
   },
   recordCard: {
     backgroundColor: "#d2a24c",

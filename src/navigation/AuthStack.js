@@ -101,11 +101,7 @@ export default function AuthStack() {
         }}
       />
       <Stack.Screen name="編輯圖片" component={PhotoEdit}/>
-      <Stack.Screen
-        name="公共聊天室"
-        component={BrowseChannelsScreen}
-        options={{ headerShown: false }}
-      />
+      <Stack.Screen name="公共聊天室" component={BrowseChannelsScreen} options={{ headerShown: false }} />
       <Stack.Screen
         name="Chat"
         component={withInAppNotification(ChatScreen)}

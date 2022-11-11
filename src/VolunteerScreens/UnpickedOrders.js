@@ -1,11 +1,12 @@
 import { SafeAreaView, Text, StyleSheet, Image, View, TouchableOpacity, Dimensions, ScrollView } from 'react-native'
 import React, { useState, useEffect } from 'react'
+
+import back from '../assets/back.png'
 import home from '../assets/home.png'
 
 export default function UnpickedOrders({ route, navigation }) {
 
   const [order, setOrder] = useState([]);
-
   // fetch the orders
   const getOrder = async () => {
     const url = route.params.baseUrl + '/Orders/GetPublishedOrder';
@@ -28,13 +29,15 @@ export default function UnpickedOrders({ route, navigation }) {
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false} style={{width: Math.round(Dimensions.get('window').width), paddingHorizontal: 25}}>
         <View style={styles.header}>
-          <Text style={styles.pageTitle}>待接服務</Text>
           <TouchableOpacity onPress={() => navigation.goBack()}>
-            <Image source={home} style={styles.homeIcon} />
+            <Image source={back} style={styles.backIcon} />
           </TouchableOpacity>
+          <Text style={styles.pageTitle}>訂單內容</Text>
         </View>
         <View style={{height: 20}}></View>
         {order.map((type, index) => {
+          const imgUrl = route.params.baseUrl + '/' + type.imagePath
+          console.log(imgUrl)
           return(
             <View>
               <TouchableOpacity
@@ -44,15 +47,27 @@ export default function UnpickedOrders({ route, navigation }) {
                     id: type.orderId, 
                     detail: type.typeDetail,
                     time: type.exeTime,
-                    name: type.elderName,
                     descript: type.descript,
                     place: type.place,
-                    helper: route.params.userID,
+                    img: imgUrl,
+                    name: type.elderName,
                   })}
                 key={index}
               >
-                <Text style={styles.orderCardTextStyle}>{type.typeDetail}</Text>
-                <Text style={styles.orderCardTextStyle}>{type.exeTime.substring(11, 16)}, {type.exeTime.substring(5, 10)}</Text>
+                <View style={{
+                  flexDirection: "row", 
+                  justifyContent: "space-between", 
+                  alignItems: "flex-end",
+                  marginHorizontal: 5
+                }}>
+                  <Image source={{ uri: route.params.baseUrl + '/' + type.imagePath }} style={styles.image}/>
+                  <View style={{
+                    alignItems: "flex-end",
+                  }}>
+                    <Text style={styles.orderCardTextStyle}>{type.typeDetail}</Text>
+                    <Text style={styles.orderCardTextStyle}>{type.exeTime.substring(11, 16)}, {type.exeTime.substring(5, 10)}</Text>
+                  </View>
+                </View>
               </TouchableOpacity>
             </View>
           )
@@ -71,9 +86,11 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: "row", 
     marginTop: 70,
-    justifyContent: "space-between",
+    // backgroundColor: "black",
+    justifyContent: "flex-start",
     alignSelf: "center",
     width: Math.round(Dimensions.get('window').width) - 55,
+    alignItems: "center",
   },
   pageTitle: {
     fontSize: 35, 
@@ -81,12 +98,14 @@ const styles = StyleSheet.create({
     fontFamily: "Avenir Next",
     color: "#6f5643",
     letterSpacing: 2,
+    marginRight: 20,
+    justifyContent: "center",
   },
-  homeIcon: {
+  backIcon: {
     tintColor: "#6f5643",
-    width: 35,
-    height: 35,
-    marginTop: 10
+    width: 30,
+    height: 30,
+    marginRight: 10,
   },
   orderCard: {
     backgroundColor: "#d2a24c",
@@ -95,7 +114,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     paddingVertical: 20,
     paddingHorizontal: 15,
-    flexDirection: "row",
+    // flexDirection: "row",
     justifyContent: "space-between",
     alignSelf: "center"
   },
@@ -104,5 +123,11 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     textAlign: "center",
     fontSize: 23,
+  },
+  image: {
+    width: 150,
+    height: 120,
+    borderRadius: 10,
+    backgroundColor: "#6f5643",
   }
 });

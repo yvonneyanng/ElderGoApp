@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import React from 'react'
 
 import home from '../assets/home.png'
+import back from '../assets/back.png'
 import food from '../assets/food.png'
 import clothes from '../assets/clothes.png'
 import edu from '../assets/edu.png'
@@ -37,14 +38,19 @@ export default function ServiceType({ route, navigation }) {
   }, []);
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.pageTitle}>選擇類別</Text>
-        <TouchableOpacity onPress={() => navigation.pop(2)}>
-          <Image source={home} style={styles.homeIcon} />
+        <View style={{flexDirection: "row"}}>
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <Image source={back} style={styles.backIcon} />
+          </TouchableOpacity>
+          <Text style={styles.pageTitle}>服務類別</Text>
+          </View>
+        <TouchableOpacity onPress={() => navigation.navigate("Home")}>
+          <Image source={home} style={styles.homeIcon}/>
         </TouchableOpacity>
       </View>
-      <View style={{height: 20}}/>
+      <View style={{height: 5}}/>
 
       {/* index, type */}
       {mainType.map((type, index) => {
@@ -71,7 +77,7 @@ export default function ServiceType({ route, navigation }) {
           )
         }
       })}
-    </SafeAreaView>
+    </View>
   )
 }
 
@@ -83,7 +89,7 @@ const styles = StyleSheet.create({
   },
   header: {
     flexDirection: "row", 
-    marginTop: 20,
+    marginTop: 65,
     // backgroundColor: "black",
     justifyContent: "space-between",
     alignSelf: "center",
@@ -94,26 +100,27 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontFamily: "Avenir Next",
     color: "#6f5643",
-    letterSpacing: 2
+    letterSpacing: 2,
+    // marginRight: 190,
+    justifyContent: "center",
   },
   homeIcon: {
     tintColor: "#6f5643",
     width: 35,
     height: 35,
-    marginTop: 6
+    marginTop: 8
+  },
+  backIcon: {
+    tintColor: "#6f5643",
+    width: 20,
+    height: 30,
+    marginRight: 10,
+    marginTop: 11,
   },
   button: {
     paddingVertical: 15,
     alignSelf: "stretch",
     borderRadius: 10,
-    // shadowColor: "#000",
-    // shadowOffset: {
-    //   width: 5,
-    //   height: 5
-    // },
-    // shadowOpacity: 0.5,
-    // shadowRadius: 1,
-    // elevation: 5,
     marginHorizontal: 12,
     marginVertical: 10,
     width: 170,

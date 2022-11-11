@@ -25,6 +25,7 @@ import address from '../assets/address.png'
 import memo from '../assets/memo.png'
 import photo from '../assets/photo.png'
 import upload from '../assets/upload.png'
+import service from '../assets/service.png'
 
 export default function OrderDetail({ route, navigation }) {
 
@@ -54,7 +55,7 @@ export default function OrderDetail({ route, navigation }) {
     return(
       <TextInput
         placeholder={placeholder}
-        placeholderTextColor="#fff"
+        placeholderTextColor="#ebecf0"
         onChangeText={onChangeText}
         value={value}
         style={styles.timeInput}
@@ -116,23 +117,31 @@ export default function OrderDetail({ route, navigation }) {
 
   return (
     <View style={styles.container}>
-      <KeyboardAvoidingView behavior='padding' keyboardVerticalOffset={0}>
-        <ScrollView showsVerticalScrollIndicator={false} style={{width: Math.round(Dimensions.get('window').width), paddingHorizontal: 25}}>
-          <View style={styles.header}>
-            <TouchableOpacity onPress={() => navigation.goBack()}>
-              <Image source={back} style={styles.backIcon} />
-            </TouchableOpacity>
-            <Text style={styles.pageTitle}>訂單內容</Text>
-            <TouchableOpacity onPress={() => navigation.pop(4)}>
-              <Image source={home} style={styles.homeIcon} />
-            </TouchableOpacity>
+      <View style={styles.header}>
+        <View style={{flexDirection: "row"}}>
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <Image source={back} style={styles.backIcon} />
+          </TouchableOpacity>
+          <Text style={styles.pageTitle}>訂單內容</Text>
           </View>
-
+        <TouchableOpacity onPress={() => navigation.pop(4)}>
+          <Image source={home} style={styles.homeIcon}/>
+        </TouchableOpacity>
+      </View>
+      <KeyboardAvoidingView behavior='padding' keyboardVerticalOffset={0}>
+        <ScrollView 
+          showsVerticalScrollIndicator={false} 
+          style={{
+            width: Math.round(Dimensions.get('window').width), 
+            paddingHorizontal: 25,
+            // marginBottom: 130,
+          }}
+        >  
           {/* print selected service type and detail */}
           <View style={styles.detailView}>
             <View style={styles.detailTitleView}>
-              <Image source={clock} style={styles.detailIcon}/>
-              <Text style={styles.detailTitle}>項目：</Text>
+              <Image source={service} style={styles.detailIcon}/>
+              <Text style={styles.detailTitle}>項目</Text>
             </View>
             <View style={[styles.inputBlock, {height: 55, paddingTop: 10}]}>
               <Text style={styles.service}>
@@ -146,7 +155,7 @@ export default function OrderDetail({ route, navigation }) {
           <View style={styles.detailView}>
             <View style={styles.detailTitleView}>
               <Image source={clock} style={styles.detailIcon}/>
-              <Text style={styles.detailTitle}>時間：（必填）</Text>
+              <Text style={styles.detailTitle}>時間【必填】</Text>
             </View>
             <View style={styles.timeInputBlock}>
               {timeInputBlock("月", setMonth, month)}
@@ -163,11 +172,11 @@ export default function OrderDetail({ route, navigation }) {
           <View style={styles.detailView}>
             <View style={styles.detailTitleView}>
               <Image source={address} style={styles.detailIcon}/>
-              <Text style={styles.detailTitle}>地點：（必填）</Text>
+              <Text style={styles.detailTitle}>地點【必填】</Text>
             </View>
             <TextInput
               placeholder="輸入地址或地標"
-              placeholderTextColor="#fff"
+              placeholderTextColor="#ebecf0"
               onChangeText={setLocation}
               value={location}
               style={styles.inputBlock}
@@ -180,11 +189,11 @@ export default function OrderDetail({ route, navigation }) {
           <View style={styles.detailView}>
             <View style={styles.detailTitleView}>
               <Image source={memo} style={styles.detailIcon}/>
-              <Text style={styles.detailTitle}>備註：（選填）</Text>
+              <Text style={styles.detailTitle}>備註</Text>
             </View>
             <TextInput
               placeholder="上限50字"
-              placeholderTextColor="#fff"
+              placeholderTextColor="#ebecf0"
               onChangeText={setDescription}
               value={description}
               style={styles.inputBlock}
@@ -196,7 +205,7 @@ export default function OrderDetail({ route, navigation }) {
           <View style={styles.detailView}>
             <TouchableOpacity style={styles.detailTitleView}>
               <Image source={photo} style={styles.detailIcon}/>
-              <Text style={styles.detailTitle}>地點附近照片：</Text>
+              <Text style={styles.detailTitle}>地點預覽照片</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.imageContainer} onPress={() => pickImage()}>
               {/* <Image source={upload} style={styles.imageContainerText}>點擊此處打開相簿</Image> */}
@@ -223,7 +232,7 @@ const styles = StyleSheet.create({
   },
   header: {
     flexDirection: "row", 
-    marginTop: 68,
+    marginTop: 65,
     // backgroundColor: "black",
     justifyContent: "space-between",
     alignSelf: "center",
@@ -246,7 +255,7 @@ const styles = StyleSheet.create({
   },
   backIcon: {
     tintColor: "#6f5643",
-    width: 30,
+    width: 20,
     height: 30,
     marginRight: 10,
     marginTop: 11,
@@ -260,7 +269,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     alignSelf: "center",
     marginTop: 35,
-    marginBottom: 40
+    marginBottom: 170
   },
   submitText: {
     fontSize: 30,
@@ -339,7 +348,7 @@ const styles = StyleSheet.create({
     fontSize: 25,
     fontFamily: "Avenir Next",
     fontWeight: "600",
-    color: "#fff",
+    color: "#ebecf0",
     letterSpacing: 1,
     flexDirection: "row",
     width: Math.round(Dimensions.get('window').width) - 50,

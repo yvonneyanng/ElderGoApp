@@ -56,9 +56,7 @@ export default function RecordDetail({ navigation, route }) {
     return(
       <View style={styles.detailView}>
         <Text style={styles.detailTitle}>{title}</Text>
-        <View style={styles.detailContent}>
-          <Text style={styles.contentText}>{content}</Text>
-        </View>
+        <Text style={styles.contentText}>{content}</Text>
       </View>
     )
   }
@@ -71,8 +69,19 @@ export default function RecordDetail({ navigation, route }) {
         </TouchableOpacity>
         <Text style={styles.pageTitle}>訂單內容</Text>
       </View>
+      <View style={{height: 20}}></View>
 
       {/* display order, time, location, name... here */}
+      <View style={styles.wholeDetail}>
+        {detail("【項目】", route.params.detail)}
+        {detail("【時間】", route.params.time.substring(11, 16) + ", " + route.params.time.substring(5, 10))}
+        {detail("【地點】", route.params.place)}
+
+        {detail("【服務對象】", route.params.name)}
+        {detail("【備註】", route.params.descript)}
+        <Text style={styles.detailTitle}>【環境預覽】</Text>
+        <Image source={{ uri: route.params.img }} style={styles.img}/>
+      </View>
 
       <TouchableOpacity 
         style={styles.button} 
@@ -118,16 +127,15 @@ const styles = StyleSheet.create({
     marginTop: 5
   },
   button: {
-    width: 330,
-    height: 65,
     borderRadius: 10,
+    padding: 10,
+    elevation: 2,
     backgroundColor: "#cc6b49",
-    flexDirection: "row",
+    width: Math.round(Dimensions.get('window').width) - 55,
+    height: 60,
+    marginHorizontal: 15,
     justifyContent: "center",
-    alignItems: "center",
-    marginTop: 10,
-    paddingHorizontal: 10,
-    alignSelf: "center"
+    marginTop: 25
   },
   buttonText: {
     fontSize: 28,
@@ -137,5 +145,53 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     letterSpacing: 20,
     marginLeft: 10
+  },
+  wholeDetail: {
+    width: Math.round(Dimensions.get('window').width) - 55,
+    backgroundColor: "#d2a24c",
+    borderRadius: 10,
+    // paddingHorizontal: 10,
+    paddingVertical: 10,
+  },
+  img: {
+    width: Math.round(Dimensions.get('window').width) - 100,
+    height: 200,
+    alignSelf: "center",
+    borderRadius: 10,
+    marginBottom: 10,
+  },
+  detailView: {
+    alignItems: "flex-start",
+    marginBottom: 10,
+    borderRadius: 10,
+    flexDirection: "row",
+  },
+  detailTitle: {
+    fontSize: 25,
+    fontFamily: "Avenir Next",
+    fontWeight: "600",
+    color: "#ece6c2",
+    letterSpacing: 1,
+    alignSelf: "flex-start",
+    padding: 8,
+    // marginLeft: 5,
+  },
+  detailContent: {
+    borderColor: "transparent",
+    borderWidth: 1,
+    borderRadius: 10,
+    width: Math.round(Dimensions.get('window').width) - 55,
+    paddingVertical: 10,
+    backgroundColor: "#d2a24c",
+    alignItems: "flex-start",
+  },
+  contentText: {
+    fontSize: 25,
+    fontFamily: "Avenir Next",
+    fontWeight: "600",
+    color: "#6f5643",
+    letterSpacing: 1,
+    alignSelf: "flex-start",
+    paddingVertical: 8,
   },
 });

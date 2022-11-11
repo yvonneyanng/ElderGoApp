@@ -15,6 +15,7 @@ import address from '../assets/address.png'
 import status from '../assets/status.png'
 import checked from '../assets/checked.png'
 import line from '../assets/line.png'
+import back from '../assets/back.png'
 
 export default function OrderRecord({ route, navigation }) {
 
@@ -57,18 +58,14 @@ export default function OrderRecord({ route, navigation }) {
 
   return (
     <View style={styles.container}>
+      <View style={styles.header}>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Image source={back} style={styles.backIcon} />
+        </TouchableOpacity>
+        <Text style={styles.pageTitle}>歷史訂單</Text>
+      </View>
       <ScrollView showsVerticalScrollIndicator={false} style={{width: Math.round(Dimensions.get('window').width), paddingHorizontal: 25}}>
-        <View style={styles.header}>
-          {/* <TouchableOpacity onPress={getData} > */}
-            <Text style={styles.pageTitle}>歷史訂單</Text>
-          {/* </TouchableOpacity> */}
-          <Text>{dataItem}</Text> 
-          <TouchableOpacity onPress={() => navigation.goBack()}>
-            <Image source={home} style={styles.homeIcon} />
-          </TouchableOpacity>
-        </View>
         <View style={{height: 20}}></View>
-
         {order.map((type, index) => {
           return(
             <View key={index} style={styles.recordCard}>
@@ -111,9 +108,9 @@ const styles = StyleSheet.create({
   },
   header: {
     flexDirection: "row", 
-    marginTop: 70,
+    marginTop: 65,
     // backgroundColor: "black",
-    justifyContent: "space-between",
+    justifyContent: "flex-start",
     alignSelf: "center",
     width: Math.round(Dimensions.get('window').width) - 55,
   },
@@ -123,12 +120,21 @@ const styles = StyleSheet.create({
     fontFamily: "Avenir Next",
     color: "#6f5643",
     letterSpacing: 2,
+    // marginRight: 190,
+    justifyContent: "center",
   },
   homeIcon: {
     tintColor: "#6f5643",
     width: 35,
     height: 35,
     marginTop: 8
+  },
+  backIcon: {
+    tintColor: "#6f5643",
+    width: 20,
+    height: 30,
+    marginRight: 10,
+    marginTop: 11,
   },
   recordCard: {
     backgroundColor: "#d2a24c",

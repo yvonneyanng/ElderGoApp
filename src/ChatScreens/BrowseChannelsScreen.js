@@ -46,7 +46,7 @@ export default function BrowseChannelsScreen({ navigation }) {
           <TouchableOpacity onPress={() => navigation.goBack()}>
             <Image source={back} style={styles.backIcon} />
           </TouchableOpacity>
-          <Text style={styles.pageTitle}>聊天室</Text>
+          <Text style={styles.pageTitle}>公共聊天室</Text>
           </View>
         <TouchableOpacity onPress={() => navigation.navigate("CreateChannel")}>
           <Image source={plus} style={styles.homeIcon}/>
@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
     tintColor: "#6f5643",
     width: 30,
     height: 35,
-    marginTop: 10,
+    marginTop: 8,
     marginRight: 5
   },
   plusIcon: {
