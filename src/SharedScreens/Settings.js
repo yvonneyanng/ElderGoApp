@@ -15,10 +15,33 @@ import React, { useState, useEffect } from 'react'
 import home from '../assets/home.png'
 
 export default function Settings({ route, navigation }) {
+
+  const getMember = () => {
+    console.log("userID: " + route.params.userID)
+    const url = route.params.baseUrl + '/Members/GetMember?' + new URLSearchParams({
+      id: route.params.userID
+    });
+    fetch(url, { method: 'GET'})
+      .then((response) => response.json())
+      .then((responseData) => {
+        setName(responseData.name)
+        setPhone(responseData.phone)
+        setAddress(responseData.address)
+      })
+      .catch((error) => {
+        console.log('error  ' + error);
+      })
+  };
+
+  // useEffect(() => {
+  //   getMember();
+  // }, []);
+
+  console.log("elderID: " + route.params.userID)
   // 傳入姓名、電話、地址做為預設值
-  const [newName, setName] = useState('')
-  const [phone, setPhone] = useState('')
-  const [address, setAddress] = useState('')
+  const [newName, setName] = useState(newName)
+  const [phone, setPhone] = useState(phone)
+  const [address, setAddress] = useState(address)
   const [comeIn, setComeIn] = useState(0)
 
   // save new user data
@@ -74,6 +97,7 @@ export default function Settings({ route, navigation }) {
   }
 
   useEffect(() => {
+    getMember();
     if(comeIn === 1) {
       save();
     }

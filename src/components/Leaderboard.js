@@ -38,6 +38,7 @@ export default function LeaderboardCard({ id }) {
           <View style={{width: 25}}/>
 
           {/* fetch top scored volunteers' photo/name/points/focus category to fill in props */}
+          {/* mapping the leaderboard stat */}
           {Card(einstein, first, "Einstein", 10)}
           {Card(anne, second, "Anne", 8)}
           {Card(musk, third, "Musk", 7)}

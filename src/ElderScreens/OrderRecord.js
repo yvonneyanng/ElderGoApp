@@ -22,21 +22,9 @@ export default function OrderRecord({ route, navigation }) {
   const [order, setOrder] = useState([]);
 
   const [dataItem, setDataItem] = useState()
-  // const getData = async () => {
-  //   console.log("im in")
-  //   try {
-  //     const item = await AsyncStorage.getItem('userID');
-  //     console.log("number: " + Number(item));
-  //     setDataItem(Number(item))
-  //   } catch (e) {
-  //     console.log("error", e);
-  //   }
-  // };
 
   // fetch the orders
   const getOrder = () => {
-    // console.log("Number(dataItem): " + typeof(Number(dataItem)))
-    // console.log("route.params.userID: " + typeof(route.params.userID) + route.params.userID)
     console.log("userID: " + route.params.userID)
     const url = route.params.baseUrl + '/OrdersHistory/GetElderHistory?' + new URLSearchParams({
       ElderId: route.params.userID

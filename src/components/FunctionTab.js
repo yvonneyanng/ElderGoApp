@@ -1,5 +1,5 @@
 import { View, Text, Image, StyleSheet, Dimensions, TouchableOpacity } from 'react-native'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigation } from '@react-navigation/native'
 
 import lena from '../assets/lena.jpg'
@@ -7,8 +7,33 @@ import lena from '../assets/lena.jpg'
 export default function FunctionTab({ text, description, screen, icon, id, baseUrl}) {
   const navigation = useNavigation();
   const [newName, setName] = useState('name')
-  const [phone, setPhone] = useState('phone')
-  const [address, setAddress] = useState('addr')
+  const [newPhone, setPhone] = useState('phone')
+  const [newAddress, setAddress] = useState('addr')
+
+  const getMember = () => {
+    console.log("userID: " + id)
+    const url = baseUrl + '/Members/GetMember?' + new URLSearchParams({
+      id: id
+    });
+    fetch(url, { method: 'GET'})
+      .then((response) => response.json())
+      .then((responseData) => {
+        console.log(responseData.name);
+        console.log(responseData.phone);
+        console.log(responseData.address);
+        setName(responseData.name)
+        setPhone(responseData.phone)
+        setAddress(responseData.address)
+        // setOrder(responseData);
+      })
+      .catch((error) => {
+        console.log('error  ' + error);
+      })
+  };
+
+  useEffect(() => {
+    getMember();
+  }, []);
 
   return (
     <TouchableOpacity 
@@ -19,8 +44,8 @@ export default function FunctionTab({ text, description, screen, icon, id, baseU
           {
             userID: id, 
             name: newName, 
-            phone: phone, 
-            address: address
+            phone: newPhone, 
+            address: newAddress
           }
         )
       }>
