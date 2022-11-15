@@ -104,12 +104,15 @@ const styles = StyleSheet.create({
   listTitle: {
     fontSize: 25,
     marginLeft: 2,
-    color: '#000000',
+    color: '#6f5643',
+    fontWeight: 'bold',
   },
   listDescription: {
     fontSize: 20,
     alignSelf: 'flex-end',
     marginRight: 10,
+    color: '#ece6c2',
+    fontWeight: 'bold',
   },
   chat: {
     marginTop: 15,

@@ -15,8 +15,9 @@ export default function ServiceDetail({ route, navigation }) {
 
   const orderID = route.params.id;
   const helperID = route.params.helper;
-
-  console.log(route.params.img)
+  console.log("[DETAIL] orderID: " + orderID);
+  console.log("[DETAIL] helperID: " + helperID);
+  console.log("[DETAIL] IMG: " + route.params.img)
 
   const receive = ( buttonText ) => {
     return(
@@ -40,7 +41,7 @@ export default function ServiceDetail({ route, navigation }) {
         console.log(responseData);
       })
       .catch((error) => {
-        console.log('error  ' + error);
+        console.log('[SER-DET] error: ' + error);
       })
     navigation.navigate("VolunteerHome", { msg: helperID });
   }
@@ -58,15 +59,15 @@ export default function ServiceDetail({ route, navigation }) {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <View style={styles.header}>
-        <TouchableOpacity onPress={() => navigation.pop(2)}>
-          <Image source={back} style={styles.homeIcon} />
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Image source={back} style={styles.backIcon} />
         </TouchableOpacity>
         <Text style={styles.pageTitle}>訂單內容</Text>
       </View>
 
-      <View style={{height: 20}}/>
+      <View style={{height: 10}}/>
       {/* {detail("訂單編號", route.params.id)} */}
       <View style={styles.wholeDetail}>
         {detail("【項目】", route.params.detail)}
@@ -80,7 +81,7 @@ export default function ServiceDetail({ route, navigation }) {
       </View>
 
       {receive("接   單")}
-    </SafeAreaView>
+    </View>
   )
 }
 
@@ -92,11 +93,12 @@ const styles = StyleSheet.create({
   },
   header: {
     flexDirection: "row", 
-    marginTop: 20,
+    marginTop: 65,
     // backgroundColor: "black",
     justifyContent: "flex-start",
     alignSelf: "center",
     width: Math.round(Dimensions.get('window').width) - 55,
+    alignItems: "center",
   },
   pageTitle: {
     fontSize: 35, 
@@ -104,14 +106,14 @@ const styles = StyleSheet.create({
     fontFamily: "Avenir Next",
     color: "#6f5643",
     letterSpacing: 2,
-    marginTop: 1
+    marginRight: 20,
+    justifyContent: "center",
   },
-  homeIcon: {
+  backIcon: {
     tintColor: "#6f5643",
     width: 30,
-    height: 35,
-    marginTop: 10,
-    marginRight:10
+    height: 30,
+    marginRight: 5,
   },
   button: {
     borderRadius: 10,

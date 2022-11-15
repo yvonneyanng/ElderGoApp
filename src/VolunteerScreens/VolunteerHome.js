@@ -1,5 +1,5 @@
 import { SafeAreaView, Text, Image, StyleSheet, TouchableOpacity, View, Alert, Dimensions } from 'react-native'
-import React from 'react'
+import React, { useContext } from 'react'
 
 import logout from '../assets/logout.png'
 import orders from '../assets/orders.png'
@@ -9,12 +9,14 @@ import game from '../assets/game.png'
 import settings from '../assets/settings.png'
 
 import FunctionTab from '../components/FunctionTab'
+import { AuthContext } from '../navigation/AuthProvider';
 
 // msg: helperID
 export default function VolunteerHome({ route, navigation }) {
 
   const helperID = route.params.msg;
   console.log(helperID);
+  // const { login, logout, loading } = useContext(AuthContext);
 
   // logout alert
   const logOut = () => {
@@ -24,12 +26,13 @@ export default function VolunteerHome({ route, navigation }) {
       [
         {text: "是", onPress: () => navigation.navigate("SignIn")},
         {text: "否", onPress: () => console.log("No Pressed")}
+        // {text: "是", onPress: () => { logout(), navigation.navigate("SignIn") }},
       ]
     )
   }
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.pageTitle}>首頁</Text>
         <TouchableOpacity onPress={logOut}>
@@ -39,9 +42,9 @@ export default function VolunteerHome({ route, navigation }) {
       <View style={{height: 10}}/>
       <FunctionTab text="待接服務" description="查看正在等待的服務" screen="UnpickedOrders" icon={service} id={helperID}/>
       <FunctionTab text="歷史訂單" description="查看所有訂單記錄" screen="ServiceRecord" icon={orders} id={helperID}/>
-      <FunctionTab text="遊戲" description="活動大腦" screen="Chat" icon={game} />
+      <FunctionTab text="遊戲" description="活動大腦" screen="紙牌遊戲" icon={game} id={helperID}/>
       <FunctionTab text="設定" description="修改會員資料" screen="Settings" icon={settings} id={helperID}/>
-    </SafeAreaView>
+    </View>
   )
 }
 
@@ -53,7 +56,7 @@ const styles = StyleSheet.create({
   },
   header: {
     flexDirection: "row", 
-    marginTop: 20,
+    marginTop: 65,
     justifyContent: "space-between",
     alignSelf: "center",
     width: Math.round(Dimensions.get('window').width) - 55,

@@ -6,6 +6,8 @@ import home from '../assets/home.png'
 
 export default function UnpickedOrders({ route, navigation }) {
 
+  console.log("UnpickedOrders: " + route.params.userID);
+
   const [order, setOrder] = useState([]);
   // fetch the orders
   const getOrder = async () => {
@@ -17,7 +19,7 @@ export default function UnpickedOrders({ route, navigation }) {
         setOrder(responseData);
       })
       .catch((error) => {
-        console.log('error  ' + error);
+        console.log('[UNPICKED] error: ' + error);
       })
   };
 
@@ -27,17 +29,17 @@ export default function UnpickedOrders({ route, navigation }) {
 
   return (
     <View style={styles.container}>
+      <View style={styles.header}>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Image source={back} style={styles.backIcon} />
+        </TouchableOpacity>
+        <Text style={styles.pageTitle}>待接服務</Text>
+      </View>
       <ScrollView showsVerticalScrollIndicator={false} style={{width: Math.round(Dimensions.get('window').width), paddingHorizontal: 25}}>
-        <View style={styles.header}>
-          <TouchableOpacity onPress={() => navigation.goBack()}>
-            <Image source={back} style={styles.backIcon} />
-          </TouchableOpacity>
-          <Text style={styles.pageTitle}>訂單內容</Text>
-        </View>
-        <View style={{height: 20}}></View>
+        <View style={{height: 10}}></View>
         {order.map((type, index) => {
           const imgUrl = route.params.baseUrl + '/' + type.imagePath
-          console.log(imgUrl)
+          console.log("[UNPICKED] IMG: " + type.imagePath)
           return(
             <View>
               <TouchableOpacity
@@ -51,6 +53,7 @@ export default function UnpickedOrders({ route, navigation }) {
                     place: type.place,
                     img: imgUrl,
                     name: type.elderName,
+                    helper: route.params.userID,
                   })}
                 key={index}
               >
@@ -65,7 +68,7 @@ export default function UnpickedOrders({ route, navigation }) {
                     alignItems: "flex-end",
                   }}>
                     <Text style={styles.orderCardTextStyle}>{type.typeDetail}</Text>
-                    <Text style={styles.orderCardTextStyle}>{type.exeTime.substring(11, 16)}, {type.exeTime.substring(5, 10)}</Text>
+                    <Text style={styles.orderCardTextStyle}>{type.exeTime.substring(5, 10)}, {type.exeTime.substring(11, 16)}</Text>
                   </View>
                 </View>
               </TouchableOpacity>
@@ -85,7 +88,7 @@ const styles = StyleSheet.create({
   },
   header: {
     flexDirection: "row", 
-    marginTop: 70,
+    marginTop: 65,
     // backgroundColor: "black",
     justifyContent: "flex-start",
     alignSelf: "center",
@@ -105,15 +108,15 @@ const styles = StyleSheet.create({
     tintColor: "#6f5643",
     width: 30,
     height: 30,
-    marginRight: 10,
+    marginRight: 5,
   },
   orderCard: {
     backgroundColor: "#d2a24c",
     marginBottom: 20,
-    width: Math.round(Dimensions.get('window').width) - 50,
+    width: Math.round(Dimensions.get('window').width) - 55,
     borderRadius: 10,
-    paddingVertical: 20,
-    paddingHorizontal: 15,
+    paddingVertical: 15,
+    paddingHorizontal: 10,
     // flexDirection: "row",
     justifyContent: "space-between",
     alignSelf: "center"

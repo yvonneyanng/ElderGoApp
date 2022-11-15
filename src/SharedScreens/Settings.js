@@ -13,6 +13,7 @@ import {
 import React, { useState, useEffect } from 'react'
 
 import home from '../assets/home.png'
+import back from '../assets/back.png'
 
 export default function Settings({ route, navigation }) {
 
@@ -77,19 +78,14 @@ export default function Settings({ route, navigation }) {
           console.log(responseData);
           if(responseData.isSuccess) {
             Alert.alert(
-              "儲存成功", 
+              "變更成功", 
               "姓名："+newName+"\n聯絡號碼："+phone+"\n預設地址："+address,
-              [
-                {
-                  text: "確定", 
-                  onPress: () => console.log("Confirm Pressed")
-                }
-              ]
+              [{ text: "確定", onPress: () => console.log("Confirm Pressed") }]
             )
           }
         })
         .catch((error) => {
-          console.log('error  ' + error);
+          console.log('[SETTINGS] error: ' + error);
         })
       setComeIn(1)
       navigation.goBack()
@@ -136,12 +132,12 @@ export default function Settings({ route, navigation }) {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.pageTitle}>設定</Text>
         <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Image source={home} style={styles.home} />
+          <Image source={back} style={styles.backIcon} />
         </TouchableOpacity>
+        <Text style={styles.pageTitle}>設定</Text>
       </View>
       <View style={{height: 10}}></View>
 
@@ -165,7 +161,7 @@ export default function Settings({ route, navigation }) {
           <Text style={[styles.buttonText, {color: "white"}]}>登     出</Text>
         </TouchableOpacity>
       </View>
-    </SafeAreaView>
+    </View>
   )
 }
 
@@ -178,24 +174,27 @@ const styles = StyleSheet.create({
   },
   header: {
     flexDirection: "row", 
-    marginTop: 20,
+    marginTop: 65,
     // backgroundColor: "black",
-    justifyContent: "space-between",
+    justifyContent: "flex-start",
     alignSelf: "center",
     width: Math.round(Dimensions.get('window').width) - 55,
+    alignItems: "center",
   },
   pageTitle: {
     fontSize: 35, 
     fontWeight: "bold",
     fontFamily: "Avenir Next",
     color: "#6f5643",
-    letterSpacing: 2
+    letterSpacing: 2,
+    marginRight: 20,
+    justifyContent: "center",
   },
-  home: {
+  backIcon: {
     tintColor: "#6f5643",
-    width: 35,
-    height: 35,
-    marginTop: 10
+    width: 30,
+    height: 30,
+    marginRight: 5,
   },
   inputContainer: {
     alignSelf: "center",

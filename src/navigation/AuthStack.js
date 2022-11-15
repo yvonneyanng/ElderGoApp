@@ -41,7 +41,7 @@ import RecordDetail from "../VolunteerScreens/RecordDetail";
 
 
 const Stack = createStackNavigator();
-const url = "https://d4ef-2001-b011-800c-16eb-c0a2-9ffd-d7ba-7825.jp.ngrok.io"
+const url = "https://cbb5-2001-b011-800c-16eb-ed90-86dd-c2c9-73a8.jp.ngrok.io"
 
 export default function AuthStack() {
   const { user, setUser } = useContext(AuthContext);
@@ -51,13 +51,12 @@ export default function AuthStack() {
   useEffect(() => {
     return kitty.onCurrentUserChanged((currentUser) => {
       setUser(currentUser);
-
-      if (initializing) {
-        setInitializing(false);
-      }
-
+      if (initializing) { setInitializing(false); }
       setLoading(false);
     });
+  }, [initializing, setUser]);
+
+  useEffect(() => {
     registerForPushNotificationsAsync().then((token) => {
       kitty.updateCurrentUser((user) => {
         user.properties = {
@@ -68,7 +67,7 @@ export default function AuthStack() {
         return user;
       });
     });
-  }, [initializing, setUser]);
+  }, []);
 
   if (loading) {
     return <Loading />;
@@ -96,22 +95,25 @@ export default function AuthStack() {
         name="圖片DIY"
         component={PhotoHome}
         options={{
-          headerStyle: {
-            backgroundColor: '#6f5643',
-          },
+          headerStyle: { backgroundColor: '#6f5643' },
           headerTintColor: '#fff',
         }}
       />
-      <Stack.Screen name="編輯圖片" component={PhotoEdit} />
+      <Stack.Screen 
+        name="編輯圖片" 
+        component={PhotoEdit} 
+        options={{
+          headerStyle: { backgroundColor: '#6f5643' },
+          headerTintColor: '#fff',
+        }}
+      />
       <Stack.Screen name="公共聊天室" component={BrowseChannelsScreen} options={{ headerShown: false }} />
       <Stack.Screen
         name="Chat"
         component={withInAppNotification(ChatScreen)}
         options={({ route }) => ({
           title: getChannelDisplayName(route.params.channel),
-          headerStyle: {
-            backgroundColor: '#6f5643',
-          },
+          headerStyle: { backgroundColor: '#6f5643' },
           headerTintColor: '#fff',
         })}
       />
@@ -119,4 +121,38 @@ export default function AuthStack() {
       <Stack.Screen name="Game" component={GameScreen} initialParams={{ baseUrl: url }} options={{ headerShown: false }} />
     </Stack.Navigator>
   );
+}
+
+async function registerForPushNotificationsAsync() {
+  let token;
+
+  if (Constants.isDevice && Platform.OS !== 'web') {
+    const {
+      status: existingStatus,
+    } = await Notifications.getPermissionsAsync();
+    let finalStatus = existingStatus;
+    if (existingStatus !== 'granted') {
+      const { status } = await Notifications.requestPermissionsAsync();
+      finalStatus = status;
+    }
+    if (finalStatus !== 'granted') {
+      console.log('Failed to get push token for push notification!');
+      return;
+    }
+
+    token = (await Notifications.getExpoPushTokenAsync()).data;
+  } else {
+    console.log('Must use physical device for Push Notifications');
+  }
+
+  // if (Platform.OS === 'android') {
+  //   await Notifications.setNotificationChannelAsync('default', {
+  //     name: 'default',
+  //     importance: Notifications.AndroidImportance.MAX,
+  //     vibrationPattern: [0, 250, 250, 250],
+  //     lightColor: '#FF231F7C',
+  //   });
+  // }
+
+  return token;
 }

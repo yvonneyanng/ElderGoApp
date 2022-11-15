@@ -28,16 +28,16 @@ import upload from '../assets/upload.png'
 import service from '../assets/service.png'
 
 export default function OrderDetail({ route, navigation }) {
-
+  console.log("[DETAIL] userID: " + route.params.userID)
+  // order info
   const [description, setDescription] = useState('')
   const [location, setLocation] = useState('')
-
   const [month, setMonth] = useState('')
   const [date, setDate] = useState('')
   const [hour, setHour] = useState('')
   const [minute, setMinute] = useState('')
-  console.log("[DETAIL] userID: " + route.params.userID)
 
+  // image variable
   const [hasGalleryPermission, setHasGalleryPermission] = useState(null)
   const [image, setImage] = useState(null)
   const [imageName, setImageName] = useState(null)
@@ -69,10 +69,13 @@ export default function OrderDetail({ route, navigation }) {
   const submit = () => {
     const url = route.params.baseUrl + '/Orders/PostOrder';
     const formData = new FormData();
-    if(month === '' || date === '' || hour === '' || minute === '' || location === ''){
+    if(location === ''){
+      
+    }
+    if(month === '' || date === '' || hour === '' || minute === '' || location === '') {
       Alert.alert(
-        "錯誤", 
-        "請確認必填欄位!",
+        "再檢查一下", 
+        "請確認必填欄位是否漏填!",
         [{text: "好", onPress: () => console.log("OK Pressed")}]
       )
     } else{
@@ -85,14 +88,15 @@ export default function OrderDetail({ route, navigation }) {
       formData.append('Hour', hour);
       formData.append('Min', minute);
       formData.append('Image', {type: imageType, uri: image, name: imageName});
+      // formData.append('Image', image);
 
       fetch(url, {
         method: 'POST',
         body: formData
       })
-        .then((respanse) => {
-          console.log('succeses')
-          console.log(respanse)
+        .then((response) => {
+          // console.log('succeses')
+          console.log("ORDER submit: " + response)
         })
 
       // for image
@@ -110,7 +114,7 @@ export default function OrderDetail({ route, navigation }) {
     console.log(result)
     if (!result.cancelled) {
       setImage(result.uri)
-      setImageName(result.fileName)
+      // setImageName(result.fileName)
       setImageType(result.type)
     }
   }
@@ -123,7 +127,7 @@ export default function OrderDetail({ route, navigation }) {
             <Image source={back} style={styles.backIcon} />
           </TouchableOpacity>
           <Text style={styles.pageTitle}>訂單內容</Text>
-          </View>
+        </View>
         <TouchableOpacity onPress={() => navigation.pop(4)}>
           <Image source={home} style={styles.homeIcon}/>
         </TouchableOpacity>

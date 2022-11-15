@@ -1,6 +1,7 @@
 import React, { Component, useState, useEffect, useRef } from "react";
 import { View, FlatList, Image, Text, TouchableOpacity, Alert, Dimensions } from "react-native";
-import Question from '../assets/question-circle.png';
+import Question from '../assets/question.png';
+import back from '../assets/back.png';
 
 export default function GameScreen({ route, navigation }) {
     const username = route.params.username;
@@ -64,7 +65,7 @@ export default function GameScreen({ route, navigation }) {
                     if (score == 7) {
                         setScore(0);
 
-                        Alert.alert("Awesome!", "You won the game\n並且耗時" + Math.floor(timeRef.current / 60) + '分' + Math.floor(timeRef.current % 60) + '秒');
+                        Alert.alert("你是最棒的!", "這次耗時" + Math.floor(timeRef.current / 60) + '分' + Math.floor(timeRef.current % 60) + '秒');
 
                         stopTheGame();
                         navigation.goBack()
@@ -98,7 +99,7 @@ export default function GameScreen({ route, navigation }) {
                 console.log(responseData);
             })
             .catch((error) => {
-                console.log('error  ' + error);
+                console.log('[GAME] error: ' + error);
             })
     }
     const close = (current) => {
@@ -137,7 +138,9 @@ export default function GameScreen({ route, navigation }) {
     return (
         <View style={styles.container}>
             <View style={styles.header}>
-
+                <TouchableOpacity onPress={() => navigation.goBack()}>
+                    <Image source={back} style={styles.backIcon} />
+                </TouchableOpacity>
                 <Text style={styles.pageTitle}>紙牌遊戲</Text>
 
             </View>
@@ -152,12 +155,12 @@ export default function GameScreen({ route, navigation }) {
             </View>
             <View style={styles.bottomContent}>
                 <View style={styles.score_container}>
-                    <Text style={styles.score}>分數：{score}</Text>
-                    <Text style={styles.username}>{username}</Text>
+                    {/* <Text style={styles.username}>【{username}】</Text>  */}
+                    <Text style={styles.score}>【分數】{score}</Text>
                 </View>
             </View>
             <View style={[styles.score_container]}>
-                <Text style={styles.score} >花費時間：{Math.floor(timeRef.current / 60)}:{Math.floor(timeRef.current % 60)}</Text>
+                <Text style={styles.score} >【花費時間】{Math.floor(timeRef.current / 60)}:{Math.floor(timeRef.current % 60)}</Text>
             </View>
         </View>
     )
@@ -165,21 +168,28 @@ export default function GameScreen({ route, navigation }) {
 
 const styles = {
     header: {
-        flexDirection: "row",
+        flexDirection: "row", 
         marginTop: 65,
+        // backgroundColor: "black",
+        justifyContent: "flex-start",
         alignSelf: "center",
         width: Math.round(Dimensions.get('window').width) - 55,
-
     },
     pageTitle: {
-        fontSize: 35,
+        fontSize: 35, 
         fontWeight: "bold",
         fontFamily: "Avenir Next",
         color: "#6f5643",
         letterSpacing: 2,
-        marginLeft: 5,
-        marginTop: 2,
-        alignSelf: "center"
+        // marginRight: 190,
+        justifyContent: "center",
+    },
+    backIcon: {
+        tintColor: "#6f5643",
+        width: 20,
+        height: 30,
+        marginRight: 10,
+        marginTop: 11,
     },
     flatlistRow: {
         flex: 1,
@@ -196,26 +206,20 @@ const styles = {
     mainContent: {
         flex: 1
     },
-    label: {
-        marginBottom: 5,
-        fontSize: 15,
-        fontWeight: "bold",
-        color: "#333"
-    },
     tinyLogo: {
-        width: 72,
-        height: 72,
-        margin: 3,
+        width: 65,
+        height: 65,
+        margin: 2,
         borderRadius: 8,
     },
     card: {
         backgroundColor: "#d2a24c",
         flex: 1,
-        marginLeft: 3,
-        marginRight: 3,
+        marginLeft: 5,
+        marginRight: 5,
         justifyContent: "center",
         alignItems: "center",
-        borderRadius: 5,
+        borderRadius: 10,
         width: 75,
         height: 80,
     },
@@ -233,22 +237,30 @@ const styles = {
         backgroundColor: '#ece6c2'
     },
     body: {
-        marginTop: 10
+        marginTop: 10,
+        width: Math.round(Dimensions.get('window').width) - 20,
+        alignSelf: "center",
     },
     bottomContent: {
         flexDirection: "row",
-        justifyContent: "space-between"
+        justifyContent: "space-between",
+        marginTop: 20
     },
     flatlistRow: {
         flex: 1,
         padding: 10
     },
     username: {
-        fontSize: 20
+        fontSize: 30,
+        fontWeight: "bold",
+        color: "#6f5643",
+        marginTop: 10,
     },
     score: {
         fontSize: 25,
-        fontWeight: "bold"
+        fontWeight: "bold",
+        color: "#6f5643",
+        marginTop: 10
     },
     score_container: {
         flex: 1,

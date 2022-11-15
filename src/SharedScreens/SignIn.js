@@ -63,9 +63,9 @@ export default function SignIn({ route, navigation }) {
           console.log(responseData);
           if(responseData.isSuccess == true){
             activeTab === "一般用戶" 
-              ? navigation.navigate("Home", {msg: responseData.id}) 
+              ? [navigation.navigate("Home", {msg: responseData.id}), login(account, password)]
               : navigation.navigate("VolunteerHome", {msg: responseData.id})
-            login(account, password);
+            // login(account, password);
           }else{
             if (responseData.errorMessage == "密碼錯誤"){
               Alert.alert(
@@ -83,7 +83,7 @@ export default function SignIn({ route, navigation }) {
           }
         })
         .catch((error) => {
-          console.log('login error: ' + error);
+          console.log('[SIGN IN]login error: ' + error);
         })
       setComeIn(1)
     }

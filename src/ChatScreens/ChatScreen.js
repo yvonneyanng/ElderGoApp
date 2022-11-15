@@ -256,7 +256,7 @@ export default function ChatScreen({ route, navigation, showNotification }) {
     if (typing) {
       return (
         <View style={styles.footer}>
-          <Text>{typing.displayName} 正在輸入...</Text>
+          <Text style={{color: "#6f5643"}}>{typing.displayName} 正在輸入...</Text>
         </View>
       );
     }

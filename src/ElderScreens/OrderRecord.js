@@ -25,7 +25,7 @@ export default function OrderRecord({ route, navigation }) {
 
   // fetch the orders
   const getOrder = () => {
-    console.log("userID: " + route.params.userID)
+    console.log("[ORD-REC] userID: " + route.params.userID)
     const url = route.params.baseUrl + '/OrdersHistory/GetElderHistory?' + new URLSearchParams({
       ElderId: route.params.userID
     });
@@ -36,7 +36,7 @@ export default function OrderRecord({ route, navigation }) {
         setOrder(responseData);
       })
       .catch((error) => {
-        console.log('error  ' + error);
+        console.log('[ORD-REC] error: ' + error);
       })
   };
 
@@ -53,7 +53,7 @@ export default function OrderRecord({ route, navigation }) {
         <Text style={styles.pageTitle}>歷史訂單</Text>
       </View>
       <ScrollView showsVerticalScrollIndicator={false} style={{width: Math.round(Dimensions.get('window').width), paddingHorizontal: 25}}>
-        <View style={{height: 20}}></View>
+        <View style={{height: 15}}></View>
         {order.map((type, index) => {
           return(
             <View key={index} style={styles.recordCard}>
@@ -73,10 +73,10 @@ export default function OrderRecord({ route, navigation }) {
                 <Text 
                   style={[
                     styles.recordText, 
-                    {color: type.statu === 0 ? '#cc6849' : type.statu === 2 ? '#ece6c2' : '#52784c'}
+                    {color: type.statu === 0 ? '#cc6849' : type.statu === 3 ? '#52784c' : '#ece6c2'}
                   ]}
                 >
-                  {type.statu === 0 ? '已下單' : type.statu === 2 ? '進行中' : '已完成'}
+                  {type.statu === 0 ? '已下單' : type.statu === 3 ? '已完成' : type.statu === 1 ? '訂單已被接收' : '進行中'}
                 </Text>
               </View>
               <View style={{height: 5}}></View>

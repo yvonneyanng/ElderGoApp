@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     height: 70,
-    width: deviceWidth - 50,
+    width: deviceWidth - 90,
     marginTop: 20,
     borderRadius: 10,
     alignSelf: "center"

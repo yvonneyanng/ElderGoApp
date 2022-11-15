@@ -9,31 +9,7 @@ export default function FunctionTab({ text, description, screen, icon, id, baseU
   const [newName, setName] = useState('name')
   const [newPhone, setPhone] = useState('phone')
   const [newAddress, setAddress] = useState('addr')
-
-  const getMember = () => {
-    console.log("userID: " + id)
-    const url = baseUrl + '/Members/GetMember?' + new URLSearchParams({
-      id: id
-    });
-    fetch(url, { method: 'GET'})
-      .then((response) => response.json())
-      .then((responseData) => {
-        console.log(responseData.name);
-        console.log(responseData.phone);
-        console.log(responseData.address);
-        setName(responseData.name)
-        setPhone(responseData.phone)
-        setAddress(responseData.address)
-        // setOrder(responseData);
-      })
-      .catch((error) => {
-        console.log('error  ' + error);
-      })
-  };
-
-  useEffect(() => {
-    getMember();
-  }, []);
+  // console.log("id: " + id)
 
   return (
     <TouchableOpacity 
