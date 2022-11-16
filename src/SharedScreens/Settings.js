@@ -18,7 +18,6 @@ import back from '../assets/back.png'
 export default function Settings({ route, navigation }) {
 
   const getMember = () => {
-    console.log("userID: " + route.params.userID)
     const url = route.params.baseUrl + '/Members/GetMember?' + new URLSearchParams({
       id: route.params.userID
     });
@@ -30,7 +29,7 @@ export default function Settings({ route, navigation }) {
         setAddress(responseData.address)
       })
       .catch((error) => {
-        console.log('error  ' + error);
+        console.log('[SETTINGS] error: ' + error);
       })
   };
 
@@ -38,7 +37,7 @@ export default function Settings({ route, navigation }) {
   //   getMember();
   // }, []);
 
-  console.log("elderID: " + route.params.userID)
+  console.log("[SETTINGS] elderID: " + route.params.userID)
   // 傳入姓名、電話、地址做為預設值
   const [newName, setName] = useState(newName)
   const [phone, setPhone] = useState(phone)
@@ -52,12 +51,7 @@ export default function Settings({ route, navigation }) {
       Alert.alert(
         "檢查一下", 
         "有空白欄位!",
-        [
-          {
-            text: "確定", 
-            onPress: () => console.log("Confirm Pressed")
-          }
-        ]
+        [{ text: "確定", onPress: () => console.log("Confirm Pressed") }]
       )
     } else {
       fetch(url, {

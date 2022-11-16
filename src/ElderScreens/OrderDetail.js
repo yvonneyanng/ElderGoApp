@@ -65,13 +65,12 @@ export default function OrderDetail({ route, navigation }) {
     )
   }
 
-  // submit the order, passing order information to API
+  // console.log("image HERE: "+image)
+  // submit the order, passing order information to server
   const submit = () => {
     const url = route.params.baseUrl + '/Orders/PostOrder';
     const formData = new FormData();
-    if(location === ''){
-      
-    }
+
     if(month === '' || date === '' || hour === '' || minute === '' || location === '') {
       Alert.alert(
         "再檢查一下", 
@@ -79,6 +78,7 @@ export default function OrderDetail({ route, navigation }) {
         [{text: "好", onPress: () => console.log("OK Pressed")}]
       )
     } else{
+      // console.log("ADDR: " + location)
       formData.append('ElderId', route.params.userID);
       formData.append('OrderType', route.params.orderId);
       formData.append('Place', location);
@@ -88,7 +88,7 @@ export default function OrderDetail({ route, navigation }) {
       formData.append('Hour', hour);
       formData.append('Min', minute);
       formData.append('Image', {type: imageType, uri: image, name: imageName});
-      // formData.append('Image', image);
+      // formData.append('Image', {uri: image});
 
       fetch(url, {
         method: 'POST',
@@ -96,7 +96,7 @@ export default function OrderDetail({ route, navigation }) {
       })
         .then((response) => {
           // console.log('succeses')
-          console.log("ORDER submit: " + response)
+          console.log("submit: " + response)
         })
 
       // for image
@@ -114,7 +114,7 @@ export default function OrderDetail({ route, navigation }) {
     console.log(result)
     if (!result.cancelled) {
       setImage(result.uri)
-      // setImageName(result.fileName)
+      setImageName(result.fileName)
       setImageType(result.type)
     }
   }

@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
   },
   detailView: {
     alignItems: "flex-start",
-    marginBottom: 10,
+    marginBottom: 5,
     borderRadius: 10,
     flexDirection: "row",
   },
@@ -178,7 +178,7 @@ const styles = StyleSheet.create({
   },
   img: {
     width: Math.round(Dimensions.get('window').width) - 100,
-    height: 200,
+    height: 230,
     alignSelf: "center",
     borderRadius: 10,
     marginBottom: 10,

@@ -15,7 +15,7 @@ import { AuthContext } from '../navigation/AuthProvider';
 export default function VolunteerHome({ route, navigation }) {
 
   const helperID = route.params.msg;
-  console.log(helperID);
+  console.log("[VOL-HOME] userID: " + helperID);
   // const { login, logout, loading } = useContext(AuthContext);
 
   // logout alert

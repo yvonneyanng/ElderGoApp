@@ -24,7 +24,7 @@ import { AuthContext } from '../navigation/AuthProvider';
 
 export default function Home({ route, navigation }) {
   const elderID = route.params.msg
-  console.log("elderID: " + route.params.msg)
+  console.log("[HOME] elderID: " + route.params.msg)
 
   const [str, setStr] = useState([])
   const getData = async () => { }
@@ -59,7 +59,7 @@ export default function Home({ route, navigation }) {
           marginTop: 15,
         }}
       >
-        <FunctionTab text="服務下訂" description="下訂想要使用的服務" screen="ServiceRoot" icon={service} id={elderID} />
+        <FunctionTab text="服務下訂" description="下訂想要使用的服務" screen="ServiceType" icon={service} id={elderID} />
         <FunctionTab text="歷史訂單" description="查看所有訂單記錄" screen="OrderRecord" icon={orders} id={elderID} />
         <FunctionTab text="聊天室" description="與他人互動" screen="聊天室" icon={chat} id={elderID} />
         <FunctionTab text="遊戲" description="活動大腦" screen="紙牌遊戲" icon={game} id={elderID} />

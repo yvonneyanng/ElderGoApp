@@ -7,7 +7,7 @@ import {
     TouchableOpacity
 } from "react-native";
 import back from '../assets/back.png'
-import memory from '../assets/memory.gif'
+import tutorial from '../assets/tutorial.gif'
 
 export default function GameStart({ route, navigation }) {
     console.log(route);
@@ -20,10 +20,12 @@ export default function GameStart({ route, navigation }) {
                 <Text style={styles.pageTitle}>遊戲</Text>
             </View>
 
-            <View style={styles.mainContent}>
-                <Image source={memory} style={styles.memory} />
-                <Text style={styles.rule}>【遊戲規則】</Text>
-                <Text style={styles.rule}>翻開兩張相同的牌，得1分</Text>
+            <View>
+                <Image source={tutorial} style={styles.memory} />
+                <View style={{marginBottom: 15}}>
+                    <Text style={styles.rule}>【遊戲規則】</Text>
+                    <Text style={styles.rule}>翻開兩張相同的牌，得1分</Text> 
+                </View>
                 <TouchableOpacity style={styles.button} onPress={() => {
                     navigation.navigate("Game", {
                         username: route.params.name
@@ -33,9 +35,9 @@ export default function GameStart({ route, navigation }) {
                 </TouchableOpacity>
                 {/* <TouchableOpacity style={styles.button}>
                     <Text style={styles.buttonText}>查 看 排 行 榜</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.button}>
-                    <Text style={styles.buttonText}>教 學 指 南</Text>
+                </TouchableOpacity> */}
+                {/* <TouchableOpacity style={styles.button}>
+                    <Text style={styles.buttonText}>遊 戲 設 定</Text>
                 </TouchableOpacity> */}
             </View>
         </View>
@@ -78,18 +80,15 @@ const styles = {
         marginRight: 10,
         marginTop: 11,
     },
-    mainContent: {
-        marginTop: 15
-    },
     button: {
         backgroundColor: "#d2a24c",
         height: 70,
         width: Math.round(Dimensions.get('window').width) - 200,
-        marginBottom: 25,
+        marginBottom: 10,
         borderRadius: 10,
         justifyContent: "center",
         alignSelf: "center",
-        marginTop: 20
+        marginTop: 10
     },
     buttonText: {
         fontSize: 30,
@@ -99,8 +98,8 @@ const styles = {
         alignSelf: "center",
     },
     memory: {
-        width: Math.round(Dimensions.get('window').width) - 200,
-        height: 200,
+        width: Math.round(Dimensions.get('window').width) - 190,
+        height: 220,
         marginBottom: 25,
         borderRadius: 10,
         alignSelf: "center",

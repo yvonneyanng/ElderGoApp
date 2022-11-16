@@ -52,9 +52,10 @@ export default function ServiceRecord({ route, navigation }) {
       </View>
       <ScrollView showsVerticalScrollIndicator={false} style={{width: Math.round(Dimensions.get('window').width), paddingHorizontal: 25}}>
         
-        <View style={{height: 20}}></View>
+        <View style={{height: 15}}></View>
 
         {order.map((type, index) => {
+          console.log("[REC] IMG: " + type.imagePath);
           const imgUrl = route.params.baseUrl + '/' + type.imagePath
           return(
             <TouchableOpacity 

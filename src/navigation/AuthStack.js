@@ -38,10 +38,8 @@ import ServiceDetail from '../VolunteerScreens/ServiceDetail';
 import ServiceRecord from '../VolunteerScreens/ServiceRecord';
 import RecordDetail from "../VolunteerScreens/RecordDetail";
 
-
-
 const Stack = createStackNavigator();
-const url = "https://cbb5-2001-b011-800c-16eb-ed90-86dd-c2c9-73a8.jp.ngrok.io"
+const url = "https://199d-2001-b011-800c-199d-95d6-4aec-f52b-510.jp.ngrok.io"
 
 export default function AuthStack() {
   const { user, setUser } = useContext(AuthContext);

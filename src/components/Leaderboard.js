@@ -32,7 +32,17 @@ export default function LeaderboardCard({ id }) {
 
   return (
     <View>
-      <Text style={styles.podiums}>排行榜</Text>
+      <View style={{
+        flexDirection: "row",
+        // backgroundColor: "#fff",
+        alignSelf: "flex-start",
+        marginLeft: 30,
+        alignItems: "center",
+        marginTop: 15
+      }}>
+        <Image style={styles.leaderboardImg} source={require('../assets/rank.png')}/>
+        <Text style={styles.podiums}>排行榜</Text>
+      </View>
       <View style={{height: 490}}>
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={styles.scrollview}>
           <View style={{width: 25}}/>
@@ -100,9 +110,9 @@ const styles = StyleSheet.create({
     fontFamily: "Avenir Next",
     fontWeight: "bold",
     color: "#cc6b49",
-    marginLeft: 27,
-    marginTop: 20,
-    marginBottom: 5,
+    marginLeft: 10,
+    // marginTop: 20,
+    // marginBottom: 5,
     letterSpacing: 2
   },
   scrollview: {
@@ -133,5 +143,10 @@ const styles = StyleSheet.create({
     color: "#6f5643",
     alignSelf: "center",
     marginTop: 20
+  },
+  leaderboardImg: {
+    height: 30,
+    width: 30,
+    tintColor: "#cc6b49",
   }
 })

@@ -6,7 +6,7 @@ import home from '../assets/home.png'
 
 export default function UnpickedOrders({ route, navigation }) {
 
-  console.log("UnpickedOrders: " + route.params.userID);
+  console.log("[UNPICKED] userID: " + route.params.userID);
 
   const [order, setOrder] = useState([]);
   // fetch the orders
@@ -109,6 +109,7 @@ const styles = StyleSheet.create({
     width: 30,
     height: 30,
     marginRight: 5,
+    marginTop: 3
   },
   orderCard: {
     backgroundColor: "#d2a24c",
