@@ -92,7 +92,10 @@ export default function OrderDetail({ route, navigation }) {
 
       fetch(url, {
         method: 'POST',
-        body: formData
+        body: formData,
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        },
       })
         .then((response) => {
           // console.log('succeses')

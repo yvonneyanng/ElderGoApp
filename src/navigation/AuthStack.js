@@ -39,7 +39,7 @@ import ServiceRecord from '../VolunteerScreens/ServiceRecord';
 import RecordDetail from "../VolunteerScreens/RecordDetail";
 
 const Stack = createStackNavigator();
-const url = "https://199d-2001-b011-800c-199d-95d6-4aec-f52b-510.jp.ngrok.io"
+const url = "https://637d-2402-7500-917-f1e7-d964-7c73-dda8-b067.jp.ngrok.io"
 
 export default function AuthStack() {
   const { user, setUser } = useContext(AuthContext);
