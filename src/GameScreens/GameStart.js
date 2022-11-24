@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
     View,
     Text,
@@ -6,41 +6,55 @@ import {
     Dimensions,
     TouchableOpacity
 } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
+import * as ImagePicker from 'expo-image-picker'
 import back from '../assets/back.png'
 import tutorial from '../assets/tutorial.gif'
 
 export default function GameStart({ route, navigation }) {
-    console.log(route);
+    console.log("[GS] userID: " + route.params.userID)
     return (
-        <View style={styles.container}>
-            <View style={styles.header}>
-                <TouchableOpacity onPress={() => navigation.goBack()}>
-                    <Image source={back} style={styles.backIcon} />
-                </TouchableOpacity>
-                <Text style={styles.pageTitle}>遊戲</Text>
-            </View>
-
-            <View>
-                <Image source={tutorial} style={styles.memory} />
-                <View style={{marginBottom: 15}}>
-                    <Text style={styles.rule}>【遊戲規則】</Text>
-                    <Text style={styles.rule}>翻開兩張相同的牌，得1分</Text> 
+        <ScrollView>
+            <View style={styles.container}>
+                <View style={styles.header}>
+                    <TouchableOpacity onPress={() => navigation.goBack()}>
+                        <Image source={back} style={styles.backIcon} />
+                    </TouchableOpacity>
+                    <Text style={styles.pageTitle}>遊戲</Text>
                 </View>
-                <TouchableOpacity style={styles.button} onPress={() => {
-                    navigation.navigate("Game", {
-                        username: route.params.name
-                    })
-                }}>
-                    <Text style={styles.buttonText}>開 始 遊 戲</Text>
-                </TouchableOpacity>
-                {/* <TouchableOpacity style={styles.button}>
+
+                <View>
+                    <Image source={tutorial} style={styles.memory} />
+                    <View style={{ marginBottom: 15 }}>
+                        <Text style={styles.rule}>【遊戲規則】</Text>
+                        <Text style={styles.rule}>翻開兩張相同的牌，得1分</Text>
+                    </View>
+                    <TouchableOpacity style={styles.button} onPress={() => {
+                        navigation.navigate("Game", {
+                            username: route.params.name,
+                            userID: route.params.userID
+                        })
+                    }}>
+                        <Text style={styles.buttonText}>開 始 遊 戲</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.button} onPress={() => {
+                        navigation.navigate("AddImage", {
+                            username: route.params.name,
+                            userID: route.params.userID
+                        })
+                    }}>
+                        <Text style={styles.buttonText} >新 增 圖 片</Text>
+                    </TouchableOpacity>
+
+                    {/* <TouchableOpacity style={styles.button}>
                     <Text style={styles.buttonText}>查 看 排 行 榜</Text>
                 </TouchableOpacity> */}
-                {/* <TouchableOpacity style={styles.button}>
+                    {/* <TouchableOpacity style={styles.button}>
                     <Text style={styles.buttonText}>遊 戲 設 定</Text>
                 </TouchableOpacity> */}
-            </View>
-        </View>
+                </View>
+            </View >
+        </ScrollView>
     );
 }
 
@@ -51,7 +65,7 @@ const styles = {
         backgroundColor: '#ece6c2',
     },
     header: {
-        flexDirection: "row", 
+        flexDirection: "row",
         marginTop: 65,
         // backgroundColor: "black",
         justifyContent: "flex-start",
@@ -59,7 +73,7 @@ const styles = {
         width: Math.round(Dimensions.get('window').width) - 55,
     },
     pageTitle: {
-        fontSize: 35, 
+        fontSize: 35,
         fontWeight: "bold",
         fontFamily: "Avenir Next",
         color: "#6f5643",
@@ -96,6 +110,36 @@ const styles = {
         fontWeight: "600",
         color: "#6f5643",
         alignSelf: "center",
+    },
+    imageContainer: {
+        width: Math.round(Dimensions.get('window').width) - 50,
+        height: 200,
+        padding: 10,
+        borderRadius: 15,
+        backgroundColor: "#d2a24c",
+        alignSelf: "center"
+    },
+    imageContainerText: {
+        fontSize: 25,
+        fontFamily: "Avenir Next",
+        fontWeight: "600",
+        color: "#ebecf0",
+        letterSpacing: 1,
+        flexDirection: "row",
+        width: Math.round(Dimensions.get('window').width) - 50,
+        height: 105,
+        alignSelf: "center",
+        paddingHorizontal: 15,
+        paddingTop: 5,
+        borderRadius: 10,
+    },
+    image: {
+        width: (Math.round(Dimensions.get('window').width) - 70) / 2,
+        height: 90,
+        alignSelf: "center",
+        borderRadius: 10,
+        position: "absolute",
+        top: 10,
     },
     memory: {
         width: Math.round(Dimensions.get('window').width) - 190,

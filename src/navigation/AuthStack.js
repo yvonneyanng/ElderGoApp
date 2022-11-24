@@ -30,6 +30,7 @@ import Chat from '../ElderScreens/Chat';
 import OrderRecord from '../ElderScreens/OrderRecord';
 import GameStart from '../GameScreens/GameStart';
 import GameScreen from '../GameScreens/Game';
+import AddImagePage from '../GameScreens/AddImagePage';
 
 // ================= screens for volunteer ================= //
 import VolunteerHome from '../VolunteerScreens/VolunteerHome';
@@ -39,7 +40,7 @@ import ServiceRecord from '../VolunteerScreens/ServiceRecord';
 import RecordDetail from "../VolunteerScreens/RecordDetail";
 
 const Stack = createStackNavigator();
-const url = "https://637d-2402-7500-917-f1e7-d964-7c73-dda8-b067.jp.ngrok.io"
+const url = "https://72fd-2001-b011-800c-1e2b-840d-b53f-c17c-39d6.jp.ngrok.io"
 
 export default function AuthStack() {
   const { user, setUser } = useContext(AuthContext);
@@ -97,9 +98,9 @@ export default function AuthStack() {
           headerTintColor: '#fff',
         }}
       />
-      <Stack.Screen 
-        name="編輯圖片" 
-        component={PhotoEdit} 
+      <Stack.Screen
+        name="編輯圖片"
+        component={PhotoEdit}
         options={{
           headerStyle: { backgroundColor: '#6f5643' },
           headerTintColor: '#fff',
@@ -117,6 +118,7 @@ export default function AuthStack() {
       />
       <Stack.Screen name="紙牌遊戲" component={GameStart} initialParams={{ baseUrl: url }} options={{ headerShown: false }} />
       <Stack.Screen name="Game" component={GameScreen} initialParams={{ baseUrl: url }} options={{ headerShown: false }} />
+      <Stack.Screen name="AddImage" component={AddImagePage} initialParams={{ baseUrl: url }} options={{ headerShown: false }} />
     </Stack.Navigator>
   );
 }

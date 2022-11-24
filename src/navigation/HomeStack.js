@@ -32,6 +32,7 @@ import Chat from '../ElderScreens/Chat';
 import OrderRecord from '../ElderScreens/OrderRecord';
 import GameStart from '../GameScreens/GameStart';
 import GameScreen from '../GameScreens/Game';
+import AddImagePage from '../GameScreens/AddImagePage';
 
 // ================= screens for volunteer ================= //
 import VolunteerHome from '../VolunteerScreens/VolunteerHome';
@@ -92,7 +93,7 @@ function ChatComponent({ navigation, showNotification }) {
     });
   }, [navigation, showNotification]);
 
-  const url = "https://d4ef-2001-b011-800c-16eb-c0a2-9ffd-d7ba-7825.jp.ngrok.io"
+  const url = "https://72fd-2001-b011-800c-1e2b-840d-b53f-c17c-39d6.jp.ngrok.io"
 
   return (
     <Stack.Navigator
@@ -143,6 +144,7 @@ function ChatComponent({ navigation, showNotification }) {
       />
       <Stack.Screen name="紙牌遊戲" component={GameStart} initialParams={{ baseUrl: url }} options={{ headerShown: false }} />
       <Stack.Screen name="Game" component={GameScreen} initialParams={{ baseUrl: url }} options={{ headerShown: false }} />
+      <Stack.Screen name="AddImage" component={AddImagePage} initialParams={{ baseUrl: url }} options={{ headerShown: false }} />
     </Stack.Navigator>
   );
 }

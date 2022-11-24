@@ -13,7 +13,11 @@ export default function GameScreen({ route, navigation }) {
     const [time, setTime] = useState(0);
     const timeRef = useRef();
     const getCards = () => {
-        const url = route.params.baseUrl + '/Game/GetRandomImages';
+        console.log(route.params.userID)
+        const url = route.params.baseUrl + '/Game/GetRandomImages?' + new URLSearchParams({
+            ElderId: route.params.userID
+        });
+        console.log(url);
         fetch(url, { method: 'GET' })
             .then((response) => response.json())
             .then((responseData) => {
@@ -168,7 +172,7 @@ export default function GameScreen({ route, navigation }) {
 
 const styles = {
     header: {
-        flexDirection: "row", 
+        flexDirection: "row",
         marginTop: 65,
         // backgroundColor: "black",
         justifyContent: "flex-start",
@@ -176,7 +180,7 @@ const styles = {
         width: Math.round(Dimensions.get('window').width) - 55,
     },
     pageTitle: {
-        fontSize: 35, 
+        fontSize: 35,
         fontWeight: "bold",
         fontFamily: "Avenir Next",
         color: "#6f5643",
