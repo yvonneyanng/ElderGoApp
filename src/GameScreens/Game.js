@@ -64,6 +64,7 @@ export default function GameScreen({ route, navigation }) {
             current = current.concat(num);
             setCards(temp);
             setCurrentS(current);
+            console.log(current.length);
             if (current.length == 2) {
                 if (cards[current[0]].url == cards[current[1]].url) {
                     if (score == 7) {
@@ -81,9 +82,19 @@ export default function GameScreen({ route, navigation }) {
                 }
                 else {
                     setTimeout(() => {
-                        close(current)
-                    }, 1000);
+                        while (current.length > 0) {
+                            var index = current[current.length - 1];
+                            temp[index].isOpen = false;
+                            current.pop();
+                        }
+                        cards.forEach((item) => {
+                            renderCard({ item })
+                        });
+                    }, 500);
                 }
+            } if (current.length > 2) {
+                close(current)
+                clickCard(onclick, num)
             }
         }
     }
