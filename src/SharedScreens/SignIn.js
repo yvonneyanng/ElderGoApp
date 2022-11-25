@@ -118,7 +118,7 @@ export default function SignIn({ route, navigation }) {
     return(
       <TouchableOpacity style={styles.singInButton} onPress={checkTextInput}>
         <Text style={styles.singInButtonText}>登         入</Text>
-        <Image source={login} style={styles.buttonIcon} />
+        {/* <Image source={require('../assets/login.png')} style={styles.buttonIcon} /> */}
       </TouchableOpacity>
     )
   }

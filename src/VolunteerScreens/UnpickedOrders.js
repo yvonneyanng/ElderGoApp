@@ -40,6 +40,7 @@ export default function UnpickedOrders({ route, navigation }) {
         {order.map((type, index) => {
           const imgUrl = route.params.baseUrl + '/' + type.imagePath
           console.log("[UNPICKED] IMG: " + type.imagePath)
+          console.log("[UNPICKED] place: " + type.place)
           return(
             <View>
               <TouchableOpacity

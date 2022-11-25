@@ -14,7 +14,7 @@ import tutorial from '../assets/tutorial.gif'
 export default function GameStart({ route, navigation }) {
     console.log("[GS] userID: " + route.params.userID)
     return (
-        <ScrollView>
+        // <ScrollView>
             <View style={styles.container}>
                 <View style={styles.header}>
                     <TouchableOpacity onPress={() => navigation.goBack()}>
@@ -43,18 +43,11 @@ export default function GameStart({ route, navigation }) {
                             userID: route.params.userID
                         })
                     }}>
-                        <Text style={styles.buttonText} >新 增 圖 片</Text>
+                        <Text style={styles.buttonText} >更 換 卡 牌</Text>
                     </TouchableOpacity>
-
-                    {/* <TouchableOpacity style={styles.button}>
-                    <Text style={styles.buttonText}>查 看 排 行 榜</Text>
-                </TouchableOpacity> */}
-                    {/* <TouchableOpacity style={styles.button}>
-                    <Text style={styles.buttonText}>遊 戲 設 定</Text>
-                </TouchableOpacity> */}
                 </View>
             </View >
-        </ScrollView>
+        // </ScrollView>
     );
 }
 

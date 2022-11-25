@@ -114,6 +114,7 @@ const styles = StyleSheet.create({
     width: 30,
     height: 30,
     marginRight: 5,
+    marginTop: 5,
   },
   button: {
     borderRadius: 10,
@@ -140,6 +141,7 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     borderRadius: 10,
     flexDirection: "row",
+    width: Math.round(Dimensions.get('window').width) - 55,
   },
   detailTitle: {
     fontSize: 25,
@@ -166,8 +168,9 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     color: "#6f5643",
     letterSpacing: 1,
-    alignSelf: "flex-start",
+    alignSelf: "flex-end",
     paddingVertical: 8,
+    marginRight: 120,
   },
   wholeDetail: {
     width: Math.round(Dimensions.get('window').width) - 55,

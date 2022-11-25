@@ -70,7 +70,6 @@ export default function OrderDetail({ route, navigation }) {
   const submit = () => {
     const url = route.params.baseUrl + '/Orders/PostOrder';
     const formData = new FormData();
-
     if(month === '' || date === '' || hour === '' || minute === '' || location === '') {
       Alert.alert(
         "再檢查一下", 
@@ -117,7 +116,11 @@ export default function OrderDetail({ route, navigation }) {
     console.log(result)
     if (!result.cancelled) {
       setImage(result.uri)
-      setImageName(result.fileName)
+      var temp = (result.uri).toString();
+      console.log(temp);
+      const arr = temp.split('/');
+      console.log(arr);
+      setImageName(arr[arr.length - 1]);
       setImageType(result.type)
     }
   }
@@ -131,7 +134,7 @@ export default function OrderDetail({ route, navigation }) {
           </TouchableOpacity>
           <Text style={styles.pageTitle}>訂單內容</Text>
         </View>
-        <TouchableOpacity onPress={() => navigation.pop(4)}>
+        <TouchableOpacity onPress={() => navigation.pop(3)}>
           <Image source={home} style={styles.homeIcon}/>
         </TouchableOpacity>
       </View>

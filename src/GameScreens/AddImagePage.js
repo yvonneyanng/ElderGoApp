@@ -54,6 +54,7 @@ export default function AddImagePage({ route, navigation }) {
     const pickImage = async (seti, setin, setit) => {
         const result = await ImagePicker.launchImageLibraryAsync({
             mediaTypes: ImagePicker.MediaTypeOptions.Images,
+            // allowsEditing: true,
             selectionLimit: 6,
             aspect: [4, 3],
             quality: 1,
@@ -119,77 +120,83 @@ export default function AddImagePage({ route, navigation }) {
             })
 
         // for image
-        navigation.navigate("Home", { msg: route.params.userID })
+        // navigation.navigate("Home", { msg: route.params.userID })
+        navigation.pop(1)
     }
     return (
-        <ScrollView>
+        // <ScrollView>
             <View style={styles.container}>
                 <View style={styles.header}>
                     <TouchableOpacity onPress={() => navigation.goBack()}>
                         <Image source={back} style={styles.backIcon} />
                     </TouchableOpacity>
-                    <Text style={styles.pageTitle}>遊戲</Text>
+                    <Text style={styles.pageTitle}>更換卡牌</Text>
                 </View>
                 <View style={styles.flexContainer}>
                     <TouchableOpacity style={styles.imageContainer} onPress={() => pickImage(setImage, setImageName, setImageType)}>
                         {/* <Image source={upload} style={styles.imageContainerText}>點擊此處打開相簿</Image> */}
-                        <Text style={styles.imageContainerText}>點擊此處打開相簿</Text>
+                        <Text style={styles.imageContainerText}>圖片 1</Text>
                         {image && <Image source={{ uri: image }} style={styles.image} />}
                     </TouchableOpacity>
+                    <View style={{width: 20}}/>
                     <TouchableOpacity style={styles.imageContainer} onPress={() => pickImage(setImage2, setImageName2, setImageType2)}>
                         {/* <Image source={upload} style={styles.imageContainerText}>點擊此處打開相簿</Image> */}
-                        <Text style={styles.imageContainerText}>點擊此處打開相簿</Text>
+                        <Text style={styles.imageContainerText}>圖片 2</Text>
                         {image2 && <Image source={{ uri: image2 }} style={styles.image} />}
                     </TouchableOpacity>
                 </View>
                 <View style={styles.flexContainer}>
                     <TouchableOpacity style={styles.imageContainer} onPress={() => pickImage(setImage3, setImageName3, setImageType3)}>
                         {/* <Image source={upload} style={styles.imageContainerText}>點擊此處打開相簿</Image> */}
-                        <Text style={styles.imageContainerText}>點擊此處打開相簿</Text>
+                        <Text style={styles.imageContainerText}>圖片 3</Text>
                         {image3 && <Image source={{ uri: image3 }} style={styles.image} />}
                     </TouchableOpacity>
+                    <View style={{width: 20}}/>
                     <TouchableOpacity style={styles.imageContainer} onPress={() => pickImage(setImage4, setImageName4, setImageType4)}>
                         {/* <Image source={upload} style={styles.imageContainerText}>點擊此處打開相簿</Image> */}
-                        <Text style={styles.imageContainerText}>點擊此處打開相簿</Text>
+                        <Text style={styles.imageContainerText}>圖片 4</Text>
                         {image4 && <Image source={{ uri: image4 }} style={styles.image} />}
                     </TouchableOpacity>
                 </View>
                 <View style={styles.flexContainer}>
                     <TouchableOpacity style={styles.imageContainer} onPress={() => pickImage(setImage5, setImageName5, setImageType5)}>
                         {/* <Image source={upload} style={styles.imageContainerText}>點擊此處打開相簿</Image> */}
-                        <Text style={styles.imageContainerText}>點擊此處打開相簿</Text>
+                        <Text style={styles.imageContainerText}>圖片 5</Text>
                         {image5 && <Image source={{ uri: image5 }} style={styles.image} />}
                     </TouchableOpacity>
+                    <View style={{width: 20}}/>
                     <TouchableOpacity style={styles.imageContainer} onPress={() => pickImage(setImage6, setImageName6, setImageType6)}>
                         {/* <Image source={upload} style={styles.imageContainerText}>點擊此處打開相簿</Image> */}
-                        <Text style={styles.imageContainerText}>點擊此處打開相簿</Text>
+                        <Text style={styles.imageContainerText}>圖片 6</Text>
                         {image6 && <Image source={{ uri: image6 }} style={styles.image} />}
                     </TouchableOpacity>
                 </View>
                 <View style={styles.flexContainer}>
                     <TouchableOpacity style={styles.imageContainer} onPress={() => pickImage(setImage7, setImageName7, setImageType7)}>
                         {/* <Image source={upload} style={styles.imageContainerText}>點擊此處打開相簿</Image> */}
-                        <Text style={styles.imageContainerText}>點擊此處打開相簿</Text>
+                        <Text style={styles.imageContainerText}>圖片 7</Text>
                         {image7 && <Image source={{ uri: image7 }} style={styles.image} />}
                     </TouchableOpacity>
+                    <View style={{width: 20}}/>
                     <TouchableOpacity style={styles.imageContainer} onPress={() => pickImage(setImage8, setImageName8, setImageType8)}>
                         {/* <Image source={upload} style={styles.imageContainerText}>點擊此處打開相簿</Image> */}
-                        <Text style={styles.imageContainerText}>點擊此處打開相簿</Text>
+                        <Text style={styles.imageContainerText}>圖片 8</Text>
                         {image8 && <Image source={{ uri: image8 }} style={styles.image} />}
                     </TouchableOpacity>
                 </View>
                 <TouchableOpacity style={styles.submit} onPress={submit}>
-                    <Text style={styles.submitText}>送出訂單</Text>
+                    <Text style={styles.submitText}>更新卡牌</Text>
                 </TouchableOpacity>
             </View >
-        </ScrollView>
+        // </ScrollView>
     )
 }
 
 const styles = {
     flexContainer: {
-        flex: 1,
+        // flex: 1,
         flexDirection: "row",
+        marginHorizontal: 30
     },
     container: {
         flex: 1,
@@ -227,12 +234,13 @@ const styles = {
     },
     imageContainer: {
         width: (Math.round(Dimensions.get('window').width) - 50) / 2,
-        height: 100,
+        height: 130,
         padding: 10,
-        margin: 20,
+        // marginHorizontal: 20,
         borderRadius: 15,
         backgroundColor: "#d2a24c",
         flex: 1,
+        marginTop: 25
     },
     imageContainerText: {
         fontSize: 25,
@@ -241,16 +249,17 @@ const styles = {
         color: "#ebecf0",
         letterSpacing: 1,
         flexDirection: "row",
-        width: (Math.round(Dimensions.get('window').width) - 50) / 2,
+        // width: (Math.round(Dimensions.get('window').width) - 50) / 2,
         height: 100,
         alignSelf: "center",
         paddingHorizontal: 15,
         paddingTop: 5,
         borderRadius: 10,
+        fontWeight: "bold",
     },
     image: {
-        width: (Math.round(Dimensions.get('window').width) - 90) / 2,
-        height: 80,
+        width: (Math.round(Dimensions.get('window').width) - 120) / 2,
+        height: 110,
         alignSelf: "center",
         borderRadius: 10,
         position: "absolute",
@@ -261,11 +270,11 @@ const styles = {
         alignItems: "center",
         justifyContent: "center",
         height: 65,
-        width: Math.round(Dimensions.get('window').width) - 50,
+        width: Math.round(Dimensions.get('window').width) - 60,
         borderRadius: 10,
         alignSelf: "center",
-        marginTop: 35,
-        marginBottom: 170
+        marginTop: 30,
+        // marginBottom: 170
     },
     submitText: {
         fontSize: 30,
