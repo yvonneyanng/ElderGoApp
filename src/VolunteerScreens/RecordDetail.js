@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
   },
   header: {
     flexDirection: "row", 
-    marginTop: 70,
+    marginTop: 65,
     // backgroundColor: "black",
     justifyContent: "flex-start",
     alignSelf: "center",
@@ -144,7 +144,7 @@ const styles = StyleSheet.create({
     color: "white",
     alignSelf: "center",
     letterSpacing: 20,
-    marginLeft: 10
+    marginLeft: 20
   },
   wholeDetail: {
     width: Math.round(Dimensions.get('window').width) - 55,

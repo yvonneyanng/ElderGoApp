@@ -39,7 +39,7 @@ export default function VolunteerHome({ route, navigation }) {
           <Image source={logout} style={styles.logout} />
         </TouchableOpacity>
       </View>
-      <View style={{height: 10}}/>
+      <View style={{height: 15}}/>
       <FunctionTab text="待接服務" description="查看正在等待的服務" screen="UnpickedOrders" icon={service} id={helperID}/>
       <FunctionTab text="歷史訂單" description="查看所有訂單記錄" screen="ServiceRecord" icon={orders} id={helperID}/>
       <FunctionTab text="遊戲" description="活動大腦" screen="紙牌遊戲" icon={game} id={helperID}/>

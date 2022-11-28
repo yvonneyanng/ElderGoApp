@@ -4,8 +4,8 @@
       "package": "com.chatkitty.example",
       "googleServicesFile": "./google-services.json"
     },
-    "name": "Elder Go",
-    "slug": "elder-go",
+    "name": "CareJet",
+    "slug": "CareJet",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

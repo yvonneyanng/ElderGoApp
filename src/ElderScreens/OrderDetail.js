@@ -65,7 +65,7 @@ export default function OrderDetail({ route, navigation }) {
     )
   }
 
-  // console.log("image HERE: "+image)
+  console.log("location HERE: " + location)
   // submit the order, passing order information to server
   const submit = () => {
     const url = route.params.baseUrl + '/Orders/PostOrder';
@@ -86,7 +86,7 @@ export default function OrderDetail({ route, navigation }) {
       formData.append('Day', date);
       formData.append('Hour', hour);
       formData.append('Min', minute);
-      formData.append('Image', {type: imageType, uri: image, name: imageName});
+      formData.append('Image', {type: "image", uri: image, name: imageName});
       // formData.append('Image', {uri: image});
 
       fetch(url, {
