@@ -15,38 +15,38 @@ export default function GameStart({ route, navigation }) {
     console.log("[GS] userID: " + route.params.userID)
     return (
         // <ScrollView>
-            <View style={styles.container}>
-                <View style={styles.header}>
-                    <TouchableOpacity onPress={() => navigation.goBack()}>
-                        <Image source={back} style={styles.backIcon} />
-                    </TouchableOpacity>
-                    <Text style={styles.pageTitle}>遊戲</Text>
-                </View>
+        <View style={styles.container}>
+            <View style={styles.header}>
+                <TouchableOpacity onPress={() => navigation.goBack()}>
+                    <Image source={back} style={styles.backIcon} />
+                </TouchableOpacity>
+                <Text style={styles.pageTitle}>遊戲</Text>
+            </View>
 
-                <View>
-                    <Image source={tutorial} style={styles.memory} />
-                    <View style={{ marginBottom: 15 }}>
-                        <Text style={styles.rule}>【遊戲規則】</Text>
-                        <Text style={styles.rule}>翻開兩張相同的牌，得1分</Text>
-                    </View>
-                    <TouchableOpacity style={styles.button} onPress={() => {
-                        navigation.navigate("Game", {
-                            username: route.params.name,
-                            userID: route.params.userID
-                        })
-                    }}>
-                        <Text style={styles.buttonText}>開 始 遊 戲</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.button} onPress={() => {
-                        navigation.navigate("AddImage", {
-                            username: route.params.name,
-                            userID: route.params.userID
-                        })
-                    }}>
-                        <Text style={styles.buttonText} >更 換 卡 牌</Text>
-                    </TouchableOpacity>
+            <View>
+                <Image source={tutorial} style={styles.memory} />
+                <View style={{ marginBottom: 15 }}>
+                    <Text style={styles.rule}>【遊戲規則】</Text>
+                    <Text style={styles.rule}>翻開兩張相同的牌，得1分</Text>
                 </View>
-            </View >
+                <TouchableOpacity style={styles.button} onPress={() => {
+                    navigation.navigate("Choose", {
+                        username: route.params.name,
+                        userID: route.params.userID
+                    })
+                }}>
+                    <Text style={styles.buttonText}>開 始 遊 戲</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.button} onPress={() => {
+                    navigation.navigate("AddImage", {
+                        username: route.params.name,
+                        userID: route.params.userID
+                    })
+                }}>
+                    <Text style={styles.buttonText} >更 換 卡 牌</Text>
+                </TouchableOpacity>
+            </View>
+        </View >
         // </ScrollView>
     );
 }

@@ -14,13 +14,17 @@ export default function GameScreen({ route, navigation }) {
     const timeRef = useRef();
     const getCards = () => {
         console.log(route.params.userID)
+        var number = (route.params.difficulty == '簡單' ? 4 : 8)
         const url = route.params.baseUrl + '/Game/GetRandomImages?' + new URLSearchParams({
-            ElderId: route.params.userID
+            ElderId: route.params.userID,
+            num: number,
+            type: route.params.type
         });
         console.log(url);
         fetch(url, { method: 'GET' })
             .then((response) => response.json())
             .then((responseData) => {
+                console.log(responseData);
                 setCards(responseData)
             })
             .catch((error) => {
@@ -37,17 +41,32 @@ export default function GameScreen({ route, navigation }) {
         else {
             src = Question;
         }
-        return (
-            <View style={styles.card}>
-                <TouchableOpacity
-                    style={styles.card}
-                    onPress={() => clickCard({ item }, item.num)}
-                    key={item.num}
-                >
-                    <Image style={styles.tinyLogo} source={src} />
-                </TouchableOpacity>
-            </View>
-        );
+        if (route.params.difficulty != '簡單') {
+            return (
+                <View style={styles.card}>
+                    <TouchableOpacity
+                        style={styles.card}
+                        onPress={() => clickCard({ item }, item.num)}
+                        key={item.num}
+                    >
+                        <Image style={styles.tinyLogo} source={src} />
+                    </TouchableOpacity>
+                </View>
+            );
+        }
+        else {
+            return (
+                <View style={styles.card}>
+                    <TouchableOpacity
+                        style={styles.card}
+                        onPress={() => clickCard({ item }, item.num)}
+                        key={item.num}
+                    >
+                        <Image style={styles.tinyLogo} source={src} />
+                    </TouchableOpacity>
+                </View>
+            );
+        }
     };
 
     //點擊後邏輯
@@ -67,7 +86,8 @@ export default function GameScreen({ route, navigation }) {
             console.log(current.length);
             if (current.length == 2) {
                 if (cards[current[0]].url == cards[current[1]].url) {
-                    if (score == 7) {
+                    var number = (route.params.difficulty == '簡單' ? 4 : 8)
+                    if (score == number - 1) {
                         setScore(0);
 
                         Alert.alert("你是最棒的!", "這次耗時" + Math.floor(timeRef.current / 60) + '分' + Math.floor(timeRef.current % 60) + '秒');
@@ -163,7 +183,7 @@ export default function GameScreen({ route, navigation }) {
                 <FlatList
                     data={cards}
                     renderItem={renderCard}
-                    numColumns={4}
+                    numColumns={route.params.difficulty == '簡單' ? 2 : 4}
                     keyExtractor={item => item.num}
                     columnWrapperStyle={styles.flatlistRow}
                 />
@@ -280,5 +300,6 @@ const styles = {
     score_container: {
         flex: 1,
         alignItems: "center"
-    }
+    },
+
 };

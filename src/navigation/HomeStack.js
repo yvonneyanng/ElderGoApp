@@ -30,9 +30,13 @@ import ServiceList from '../ElderScreens/ServiceList';
 import OrderDetail from '../ElderScreens/OrderDetail';
 import Chat from '../ElderScreens/Chat';
 import OrderRecord from '../ElderScreens/OrderRecord';
+
+
+// ================= screens for game ================= //
 import GameStart from '../GameScreens/GameStart';
 import GameScreen from '../GameScreens/Game';
 import AddImagePage from '../GameScreens/AddImagePage';
+import Choose from '../GameScreens/Choose';
 
 // ================= screens for volunteer ================= //
 import VolunteerHome from '../VolunteerScreens/VolunteerHome';
@@ -93,7 +97,7 @@ function ChatComponent({ navigation, showNotification }) {
     });
   }, [navigation, showNotification]);
 
-  const url = "https://72fd-2001-b011-800c-1e2b-840d-b53f-c17c-39d6.jp.ngrok.io"
+  const url = "https://987d-2001-b011-800c-16f4-9c6b-8f5e-ceed-c22c.jp.ngrok.io"
 
   return (
     <Stack.Navigator
@@ -145,6 +149,7 @@ function ChatComponent({ navigation, showNotification }) {
       <Stack.Screen name="紙牌遊戲" component={GameStart} initialParams={{ baseUrl: url }} options={{ headerShown: false }} />
       <Stack.Screen name="Game" component={GameScreen} initialParams={{ baseUrl: url }} options={{ headerShown: false }} />
       <Stack.Screen name="AddImage" component={AddImagePage} initialParams={{ baseUrl: url }} options={{ headerShown: false }} />
+      <Stack.Screen name="Choose" component={Choose} initialParams={{ baseUrl: url }} options={{ headerShown: false }} />
     </Stack.Navigator>
   );
 }
