@@ -1,4 +1,4 @@
-import { View, Text, SafeAreaView, StyleSheet, Dimensions, TouchableOpacity, Image, Alert } from 'react-native'
+import { View, Text, SafeAreaView, StyleSheet, Dimensions, TouchableOpacity, Image, Alert,ScrollView } from 'react-native'
 import React, { useState } from 'react'
 
 import back from '../assets/back.png'
@@ -67,6 +67,7 @@ export default function ServiceDetail({ route, navigation }) {
         <Text style={styles.pageTitle}>訂單內容</Text>
       </View>
 
+      <ScrollView showsVerticalScrollIndicator={false} style={{width: Math.round(Dimensions.get('window').width), paddingHorizontal: 25}}>
       <View style={{height: 10}}/>
       {/* {detail("訂單編號", route.params.id)} */}
       <View style={styles.wholeDetail}>
@@ -79,8 +80,9 @@ export default function ServiceDetail({ route, navigation }) {
         <Text style={styles.detailTitle}>【環境預覽】</Text>
         <Image source={{ uri: route.params.img }} style={styles.img}/>
       </View>
-
       {receive("接   單")}
+
+    </ScrollView>
     </View>
   )
 }
@@ -93,7 +95,7 @@ const styles = StyleSheet.create({
   },
   header: {
     flexDirection: "row", 
-    marginTop: 65,
+    marginTop: 60,
     // backgroundColor: "black",
     justifyContent: "flex-start",
     alignSelf: "center",
@@ -119,13 +121,15 @@ const styles = StyleSheet.create({
   button: {
     borderRadius: 10,
     padding: 10,
-    elevation: 2,
+    // elevation: 2,
     backgroundColor: "#cc6b49",
     width: Math.round(Dimensions.get('window').width) - 55,
     height: 60,
     marginHorizontal: 15,
     justifyContent: "center",
-    marginTop: 25
+    marginTop: 25,
+    marginBottom: 25,
+    alignSelf: "center",
   },
   buttonTextStyle: {
     color: "white",
@@ -178,6 +182,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     // paddingHorizontal: 10,
     paddingVertical: 10,
+    alignSelf: "center",
   },
   img: {
     width: Math.round(Dimensions.get('window').width) - 100,

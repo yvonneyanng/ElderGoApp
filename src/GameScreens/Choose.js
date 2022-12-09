@@ -19,8 +19,8 @@ export default function Choose({ route, navigation }) {
     const RadioButton = (props) => (
         <TouchableOpacity
             style={{
-                backgroundColor: props.activeTab === props.text ? "#cc6b49" : "transparent",
-                borderColor: props.activeTab === props.text ? "transparent" : "#cc6b49",
+                backgroundColor: props.activeTab === props.text ? "#6f5643" : "transparent",
+                borderColor: props.activeTab === props.text ? "transparent" : "#6f5643",
                 paddingVertical: 13,
                 paddingHorizontal: 20,
                 borderRadius: 10,
@@ -28,7 +28,7 @@ export default function Choose({ route, navigation }) {
             }}
             onPress={() => props.setActiveTab(props.text)}
         >
-            <Text style={{ color: props.activeTab === props.text ? "#fff" : "#cc6b49", fontSize: 25, fontWeight: "600", letterSpacing: 2.5, marginLeft: 2.5 }}>{props.text}</Text>
+            <Text style={{ color: props.activeTab === props.text ? "#ece6c2" : "#6f5643", fontSize: 25, fontWeight: "600", letterSpacing: 2.5, marginLeft: 2.5 }}>{props.text}</Text>
         </TouchableOpacity>
     );
     return (
@@ -42,13 +42,11 @@ export default function Choose({ route, navigation }) {
             </View>
 
             <View style={styles.detailView}>
-                <View style={styles.detailTitleView}>
-                    <Text style={styles.detailTitle}>牌組:</Text>
-                </View>
+                <Text style={styles.detailTitle}>【牌組】</Text>
                 <View style={{ flexDirection: "row", alignSelf: "center", marginBottom: 25 }}>
                     <RadioButton
                         text="預設"
-                        btnColor="#cc6b49"
+                        btnColor="#6f5643"
                         textColor="white"
                         activeTab={deck}
                         setActiveTab={setDeck}
@@ -56,21 +54,18 @@ export default function Choose({ route, navigation }) {
                     <RadioButton
                         text="自訂"
                         btnColor="white"
-                        textColor="#cc6b49"
+                        textColor="#6f5643"
                         activeTab={deck}
                         setActiveTab={setDeck}
                     />
                 </View>
             </View>
             <View style={styles.detailView}>
-                <View style={styles.detailTitleView}>
-                    <Text style={styles.detailTitle}>難度:</Text>
-                </View>
-
+                <Text style={styles.detailTitle}>【難度】</Text>
                 <View style={{ flexDirection: "row", alignSelf: "center", marginBottom: 25 }}>
                     <RadioButton
                         text="簡單"
-                        btnColor="#cc6b49"
+                        btnColor="#6f5643"
                         textColor="white"
                         activeTab={difficulty}
                         setActiveTab={setDifficulty}
@@ -78,7 +73,7 @@ export default function Choose({ route, navigation }) {
                     <RadioButton
                         text="困難"
                         btnColor="white"
-                        textColor="#cc6b49"
+                        textColor="#6f5643"
                         activeTab={difficulty}
                         setActiveTab={setDifficulty}
                     />
@@ -115,7 +110,7 @@ const styles = {
     },
     header: {
         flexDirection: "row",
-        marginTop: 65,
+        marginTop: 60,
         // backgroundColor: "black",
         justifyContent: "flex-start",
         alignSelf: "center",
@@ -146,8 +141,12 @@ const styles = {
         justifyContent: "center"
     },
     bigText: {
-        fontSize: 25,
-        fontWeight: "bold"
+        fontSize: 30,
+        fontFamily: "Avenir Next",
+        fontWeight: "600",
+        color: "white",
+        letterSpacing: 20,
+        marginLeft: 20
     },
     mainContent: {
         flex: 1
@@ -216,18 +215,22 @@ const styles = {
         fontSize: 25,
         fontFamily: "Avenir Next",
         fontWeight: "600",
-        color: "#cc6b49",
+        color: "#6f5643",
         letterSpacing: 1,
-        // alignSelf: "flex-start",
-        // padding: 10,
-        marginLeft: 40,
+        alignSelf: "center",
+        marginBottom: 25,
+        marginTop: 15
     },
     detailView: {
         alignItems: "flex-start",
         marginTop: 20,
+        alignSelf: "center",
         borderRadius: 10,
-        // backgroundColor: "#d2a24c",
-    }, imageContainer: {
+        backgroundColor: "#d2a24c",
+        padding: 10,
+        width: Math.round(Dimensions.get('window').width) - 100
+    }, 
+    imageContainer: {
         width: (Math.round(Dimensions.get('window').width) - 50) / 2,
         height: 130,
         padding: 10,
@@ -257,7 +260,7 @@ const styles = {
         alignItems: "center",
         justifyContent: "center",
         height: 65,
-        width: Math.round(Dimensions.get('window').width) - 50,
+        width: Math.round(Dimensions.get('window').width) - 100,
         borderRadius: 10,
         alignSelf: "center",
         marginTop: 35,

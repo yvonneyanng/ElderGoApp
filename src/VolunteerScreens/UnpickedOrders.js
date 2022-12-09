@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
   },
   header: {
     flexDirection: "row", 
-    marginTop: 65,
+    marginTop: 60,
     // backgroundColor: "black",
     justifyContent: "flex-start",
     alignSelf: "center",

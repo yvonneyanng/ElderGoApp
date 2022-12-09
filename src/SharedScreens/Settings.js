@@ -9,6 +9,7 @@ import {
   Image, 
   Dimensions, 
   KeyboardAvoidingView, 
+  ScrollView
 } from 'react-native'
 import React, { useState, useEffect } from 'react'
 
@@ -136,25 +137,28 @@ export default function Settings({ route, navigation }) {
       <View style={{height: 10}}></View>
 
       {/* Name, Phone number, Address */}
-      {Input(require("../assets/card.png"), "姓名", "例: XXX", newName, setName)}
-      {Input(require("../assets/phone.png"), "聯絡號碼", "例: 0912345678", phone, setPhone)}
-      {Input(require("../assets/address.png"), "預設地址", "例: 逢甲路100號", address, setAddress)}
+      <ScrollView showsVerticalScrollIndicator={false} style={{width: Math.round(Dimensions.get('window').width), paddingHorizontal: 25}}>
+        {Input(require("../assets/card.png"), "姓名", "例: XXX", newName, setName)}
+        {Input(require("../assets/phone.png"), "聯絡號碼", "例: 0912345678", phone, setPhone)}
+        {Input(require("../assets/address.png"), "預設地址", "例: 逢甲路100號", address, setAddress)}
 
-      {/* Save and Logout button, triggering 'save' and 'logout' alert*/}
-      <View style={{
-        flexDirection: "row", 
-        marginTop: 30, 
-        width: Math.round(Dimensions.get('window').width) - 55,
-        alignSelf: "center",
-      }}>
-        <TouchableOpacity style={styles.button} onPress={save}>
-          <Text style={[styles.buttonText, {color: "white"}]}>儲     存</Text>
-        </TouchableOpacity>
-        <View style={{width: 20}}/>
-        <TouchableOpacity style={styles.button} onPress={logout}>
-          <Text style={[styles.buttonText, {color: "white"}]}>登     出</Text>
-        </TouchableOpacity>
-      </View>
+        {/* Save and Logout button, triggering 'save' and 'logout' alert*/}
+        <View style={{
+          flexDirection: "row", 
+          marginTop: 30, 
+          marginBottom: 40, 
+          width: Math.round(Dimensions.get('window').width) - 55,
+          alignSelf: "center",
+        }}>
+          <TouchableOpacity style={styles.button} onPress={save}>
+            <Text style={[styles.buttonText, {color: "white"}]}>儲     存</Text>
+          </TouchableOpacity>
+          <View style={{width: 20}}/>
+          <TouchableOpacity style={styles.button} onPress={logout}>
+            <Text style={[styles.buttonText, {color: "white"}]}>登     出</Text>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
     </View>
   )
 }
@@ -168,7 +172,7 @@ const styles = StyleSheet.create({
   },
   header: {
     flexDirection: "row", 
-    marginTop: 65,
+    marginTop: 60,
     // backgroundColor: "black",
     justifyContent: "flex-start",
     alignSelf: "center",

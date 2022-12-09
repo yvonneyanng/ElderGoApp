@@ -1,4 +1,4 @@
-import { SafeAreaView, Text, Image, StyleSheet, TouchableOpacity, View, Alert, Dimensions } from 'react-native'
+import { SafeAreaView, Text, Image, StyleSheet, TouchableOpacity, View, Alert, Dimensions, ScrollView } from 'react-native'
 import React, { useContext } from 'react'
 
 import logout from '../assets/logout.png'
@@ -39,11 +39,20 @@ export default function VolunteerHome({ route, navigation }) {
           <Image source={logout} style={styles.logout} />
         </TouchableOpacity>
       </View>
-      <View style={{height: 15}}/>
-      <FunctionTab text="待接服務" description="查看正在等待的服務" screen="UnpickedOrders" icon={service} id={helperID}/>
-      <FunctionTab text="歷史訂單" description="查看所有訂單記錄" screen="ServiceRecord" icon={orders} id={helperID}/>
-      <FunctionTab text="遊戲" description="活動大腦" screen="紙牌遊戲" icon={game} id={helperID}/>
-      <FunctionTab text="設定" description="修改會員資料" screen="Settings" icon={settings} id={helperID}/>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        style={{
+          marginTop: 15,
+          height: Math.round(Dimensions.get('window').height)-180,
+          // backgroundColor: "#ece662",
+          // alignItems: "space-between",
+        }}
+      >
+        <FunctionTab text="待接服務" description="查看正在等待的服務" screen="UnpickedOrders" icon={service} id={helperID}/>
+        <FunctionTab text="歷史訂單" description="查看所有訂單記錄" screen="ServiceRecord" icon={orders} id={helperID}/>
+        <FunctionTab text="遊戲" description="活動大腦" screen="紙牌遊戲" icon={game} id={helperID}/>
+        <FunctionTab text="設定" description="修改會員資料" screen="Settings" icon={settings} id={helperID}/>
+      </ScrollView>
     </View>
   )
 }
@@ -56,7 +65,7 @@ const styles = StyleSheet.create({
   },
   header: {
     flexDirection: "row", 
-    marginTop: 65,
+    marginTop: 60,
     justifyContent: "space-between",
     alignSelf: "center",
     width: Math.round(Dimensions.get('window').width) - 55,

@@ -156,7 +156,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    backgroundColor: '#ece6c2'
+    backgroundColor: '#ece6c2',
+    // marginBottom: 10
+    // aspectRatio: 10 / 5
+    // height: "80%"
   },
   pageTitle: {
     fontSize: 45, 
@@ -242,6 +245,7 @@ const styles = StyleSheet.create({
     borderWidth: 3, 
     alignContent: "center",
     marginTop: 25,
+    marginBottom: 30,
     width: 330,
     height: 60,
     borderRadius: 10,

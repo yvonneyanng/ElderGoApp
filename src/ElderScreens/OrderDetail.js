@@ -242,7 +242,7 @@ const styles = StyleSheet.create({
   },
   header: {
     flexDirection: "row", 
-    marginTop: 65,
+    marginTop: 60,
     // backgroundColor: "black",
     justifyContent: "space-between",
     alignSelf: "center",
@@ -254,7 +254,7 @@ const styles = StyleSheet.create({
     fontFamily: "Avenir Next",
     color: "#6f5643",
     letterSpacing: 2,
-    marginRight: 130,
+    // marginRight: 130,
     justifyContent: "center",
   },
   homeIcon: {

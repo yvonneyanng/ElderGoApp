@@ -53,30 +53,41 @@ export default function ServiceType({ route, navigation }) {
       <View style={{height: 5}}/>
 
       {/* index, type */}
-      {mainType.map((type, index) => {
-        if(index % 2 === 0){
-          return(
-            <View style={styles.view} key={index+20}>
-              <TouchableOpacity 
-                style={[styles.button, {backgroundColor: "#d2a24c"}]} 
-                onPress={() => navigation.navigate("ServiceList", {msg: mainType[index], userID: route.params.userID})}
-                key={index}
+      <ScrollView 
+        showsVerticalScrollIndicator={false} 
+        style={{
+          width: Math.round(Dimensions.get('window').width), 
+          // paddingHorizontal: 10,
+        }}
+      >
+        {mainType.map((type, index) => {
+          if(index % 2 === 0){
+            return(
+              <View 
+                style={styles.view} 
+                key={index+20}
               >
-                <Text style={[styles.buttonText, {color: "#6f5643"}]}>{mainType[index]}</Text>
-                <Image source={icons[index]} style={styles.icon}/>
-              </TouchableOpacity>
-              <TouchableOpacity 
-                style={[styles.button, {backgroundColor: "#d2a24c"}]} 
-                onPress={() => navigation.navigate("ServiceList", {msg: mainType[index + 1], userID: route.params.userID})}
-                key={index + 1}
-              >
-                <Text style={[styles.buttonText, {color: "#6f5643"}]}>{mainType[index + 1]}</Text>
-                <Image source={icons[index + 1]} style={styles.icon}/>
-              </TouchableOpacity>
-            </View>
-          )
-        }
-      })}
+                <TouchableOpacity 
+                  style={[styles.button, {backgroundColor: "#d2a24c"}]} 
+                  onPress={() => navigation.navigate("ServiceList", {msg: mainType[index], userID: route.params.userID})}
+                  key={index}
+                >
+                  <Text style={[styles.buttonText, {color: "#6f5643"}]}>{mainType[index]}</Text>
+                  <Image source={icons[index]} style={styles.icon}/>
+                </TouchableOpacity>
+                <TouchableOpacity 
+                  style={[styles.button, {backgroundColor: "#d2a24c"}]} 
+                  onPress={() => navigation.navigate("ServiceList", {msg: mainType[index + 1], userID: route.params.userID})}
+                  key={index + 1}
+                >
+                  <Text style={[styles.buttonText, {color: "#6f5643"}]}>{mainType[index + 1]}</Text>
+                  <Image source={icons[index + 1]} style={styles.icon}/>
+                </TouchableOpacity>
+              </View>
+            )
+          }
+        })}
+      </ScrollView>
     </View>
   )
 }
@@ -89,7 +100,7 @@ const styles = StyleSheet.create({
   },
   header: {
     flexDirection: "row", 
-    marginTop: 65,
+    marginTop: 60,
     // backgroundColor: "black",
     justifyContent: "space-between",
     alignSelf: "center",
@@ -134,7 +145,10 @@ const styles = StyleSheet.create({
   },
   view: {
     flexDirection: "row", 
-    justifyContent: "space-between", 
+    alignSelf: "center",
+    // justifyContent: "space-between", 
+    // width: "100%"
+    // ali
     // backgroundColor: "#000"
   },
   icon: {

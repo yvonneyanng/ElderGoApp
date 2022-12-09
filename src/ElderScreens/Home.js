@@ -54,9 +54,13 @@ export default function Home({ route, navigation }) {
       </View>
 
       {/* ALL THE FUNCTIONS */}
-      <View
+      <ScrollView
+        showsVerticalScrollIndicator={false}
         style={{
           marginTop: 15,
+          height: Math.round(Dimensions.get('window').height)-180,
+          // backgroundColor: "#ece662",
+          // alignItems: "space-between",
         }}
       >
         <FunctionTab text="服務下訂" description="下訂想要使用的服務" screen="ServiceType" icon={service} id={elderID} />
@@ -64,7 +68,7 @@ export default function Home({ route, navigation }) {
         <FunctionTab text="聊天室" description="與他人互動" screen="聊天室" icon={chat} id={elderID} />
         <FunctionTab text="遊戲" description="活動大腦" screen="紙牌遊戲" icon={game} id={elderID} />
         <FunctionTab text="設定" description="修改會員資料" screen="Settings" icon={settings} id={elderID} baseUrl={route.params.baseUrl} />
-      </View>
+      </ScrollView>
     </View>
   )
 }
@@ -77,7 +81,7 @@ const styles = StyleSheet.create({
   },
   header: {
     flexDirection: "row",
-    marginTop: 65,
+    marginTop: 60,
     // backgroundColor: "black",
     justifyContent: "space-between",
     alignSelf: "center",

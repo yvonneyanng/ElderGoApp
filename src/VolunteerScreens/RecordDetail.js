@@ -1,4 +1,4 @@
-import { SafeAreaView, Text, StyleSheet, Image, View, TouchableOpacity, Dimensions } from 'react-native'
+import { SafeAreaView, Text, StyleSheet, Image, View, TouchableOpacity, Dimensions, ScrollView } from 'react-native'
 import React, { useState } from 'react'
 
 import back from '../assets/back.png'
@@ -69,28 +69,30 @@ export default function RecordDetail({ navigation, route }) {
         </TouchableOpacity>
         <Text style={styles.pageTitle}>訂單內容</Text>
       </View>
-      <View style={{height: 20}}></View>
-
       {/* display order, time, location, name... here */}
-      <View style={styles.wholeDetail}>
-        {detail("【項目】", route.params.detail)}
-        {detail("【時間】", route.params.time.substring(11, 16) + ", " + route.params.time.substring(5, 10))}
-        {detail("【地點】", route.params.place)}
 
-        {detail("【服務對象】", route.params.name)}
-        {detail("【備註】", route.params.descript)}
-        <Text style={styles.detailTitle}>【環境預覽】</Text>
-        <Image source={{ uri: route.params.img }} style={styles.img}/>
-      </View>
+      <ScrollView showsVerticalScrollIndicator={false} style={{width: Math.round(Dimensions.get('window').width), paddingHorizontal: 25}}>
+        <View style={{height: 20}}></View>
+        <View style={styles.wholeDetail}>
+          {detail("【項目】", route.params.detail)}
+          {detail("【時間】", route.params.time.substring(11, 16) + ", " + route.params.time.substring(5, 10))}
+          {detail("【地點】", route.params.place)}
 
-      <TouchableOpacity 
-        style={styles.button} 
-        onPress={route.params.stat === 1 ? update : route.params.stat === 2 ? complete : home}
-      >
-        <Text style={styles.buttonText}>
-          {route.params.stat === 1 ? "開始服務" : route.params.stat === 2 ? '完成訂單' : '返   回'}
-        </Text>
-      </TouchableOpacity>
+          {detail("【服務對象】", route.params.name)}
+          {detail("【備註】", route.params.descript)}
+          <Text style={styles.detailTitle}>【環境預覽】</Text>
+          <Image source={{ uri: route.params.img }} style={styles.img}/>
+        </View>
+
+        <TouchableOpacity 
+          style={styles.button} 
+          onPress={route.params.stat === 1 ? update : route.params.stat === 2 ? complete : home}
+        >
+          <Text style={styles.buttonText}>
+            {route.params.stat === 1 ? "開始服務" : route.params.stat === 2 ? '完成訂單' : '返   回'}
+          </Text>
+        </TouchableOpacity>
+      </ScrollView>
     </View>
   )
 }
@@ -129,22 +131,24 @@ const styles = StyleSheet.create({
   button: {
     borderRadius: 10,
     padding: 10,
-    elevation: 2,
+    // elevation: 2,
     backgroundColor: "#cc6b49",
     width: Math.round(Dimensions.get('window').width) - 55,
     height: 60,
     marginHorizontal: 15,
     justifyContent: "center",
-    marginTop: 25
+    marginTop: 25,
+    marginBottom: 25,
+    alignSelf: "center",
   },
   buttonText: {
     fontSize: 28,
     fontFamily: "Avenir Next",
     fontWeight: "600",
     color: "white",
+    letterSpacing: 30,
+    marginLeft: 30,
     alignSelf: "center",
-    letterSpacing: 20,
-    marginLeft: 20
   },
   wholeDetail: {
     width: Math.round(Dimensions.get('window').width) - 55,
@@ -152,6 +156,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     // paddingHorizontal: 10,
     paddingVertical: 10,
+    alignSelf: "center",
   },
   img: {
     width: Math.round(Dimensions.get('window').width) - 100,

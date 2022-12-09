@@ -204,7 +204,7 @@ export default function GameScreen({ route, navigation }) {
 const styles = {
     header: {
         flexDirection: "row",
-        marginTop: 65,
+        marginTop: 60,
         // backgroundColor: "black",
         justifyContent: "flex-start",
         alignSelf: "center",
@@ -255,7 +255,7 @@ const styles = {
         justifyContent: "center",
         alignItems: "center",
         borderRadius: 10,
-        width: 75,
+        width: 80,
         height: 80,
     },
     text_field: {

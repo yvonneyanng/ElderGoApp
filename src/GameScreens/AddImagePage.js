@@ -124,14 +124,14 @@ export default function AddImagePage({ route, navigation }) {
         navigation.pop(1)
     }
     return (
-        // <ScrollView>
-            <View style={styles.container}>
-                <View style={styles.header}>
-                    <TouchableOpacity onPress={() => navigation.goBack()}>
-                        <Image source={back} style={styles.backIcon} />
-                    </TouchableOpacity>
-                    <Text style={styles.pageTitle}>更換卡牌</Text>
-                </View>
+        <View style={styles.container}>
+            <View style={styles.header}>
+                <TouchableOpacity onPress={() => navigation.goBack()}>
+                    <Image source={back} style={styles.backIcon} />
+                </TouchableOpacity>
+                <Text style={styles.pageTitle}>更換卡牌</Text>
+            </View>
+            <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={styles.flexContainer}>
                     <TouchableOpacity style={styles.imageContainer} onPress={() => pickImage(setImage, setImageName, setImageType)}>
                         {/* <Image source={upload} style={styles.imageContainerText}>點擊此處打開相簿</Image> */}
@@ -187,8 +187,8 @@ export default function AddImagePage({ route, navigation }) {
                 <TouchableOpacity style={styles.submit} onPress={submit}>
                     <Text style={styles.submitText}>更新卡牌</Text>
                 </TouchableOpacity>
-            </View >
-        // </ScrollView>
+            </ScrollView>
+        </View >
     )
 }
 
@@ -204,7 +204,7 @@ const styles = {
     },
     header: {
         flexDirection: "row",
-        marginTop: 65,
+        marginTop: 60,
         // backgroundColor: "black",
         justifyContent: "flex-start",
         alignSelf: "center",
@@ -274,7 +274,7 @@ const styles = {
         borderRadius: 10,
         alignSelf: "center",
         marginTop: 30,
-        // marginBottom: 170
+        marginBottom: 30
     },
     submitText: {
         fontSize: 30,

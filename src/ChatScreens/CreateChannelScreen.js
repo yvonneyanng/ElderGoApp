@@ -38,20 +38,6 @@ export default function CreateChannelScreen({ navigation }) {
           onChangeText={(text) => setChannelName(text)}
           clearButtonMode="while-editing"
         />
-        {/* <TextInput 
-          style={styles.inputBlock} 
-          placeholder={pholder}
-          placeholderTextColor="#fff"
-          onChangeText={setData}
-          value={data}/> */}
-        {/* <FormButton
-          title="點擊創建"
-          modeValue="contained"
-          labelStyle={styles.buttonLabel}
-          onPress={() => handleButtonPress()}
-          disabled={channelName.length === 0}
-          style={styles.button}
-        /> */}
         <TouchableOpacity style={styles.button} onPress={() => handleButtonPress()}>
           <Text style={styles.buttonText}>點 擊 創 建</Text>
         </TouchableOpacity>

@@ -14,7 +14,6 @@ import tutorial from '../assets/tutorial.gif'
 export default function GameStart({ route, navigation }) {
     console.log("[GS] userID: " + route.params.userID)
     return (
-        // <ScrollView>
         <View style={styles.container}>
             <View style={styles.header}>
                 <TouchableOpacity onPress={() => navigation.goBack()}>
@@ -23,7 +22,7 @@ export default function GameStart({ route, navigation }) {
                 <Text style={styles.pageTitle}>遊戲</Text>
             </View>
 
-            <View>
+            <ScrollView showsVerticalScrollIndicator={false} style={{width: Math.round(Dimensions.get('window').width), paddingHorizontal: 25}}>
                 <Image source={tutorial} style={styles.memory} />
                 <View style={{ marginBottom: 15 }}>
                     <Text style={styles.rule}>【遊戲規則】</Text>
@@ -45,9 +44,9 @@ export default function GameStart({ route, navigation }) {
                 }}>
                     <Text style={styles.buttonText} >更 換 卡 牌</Text>
                 </TouchableOpacity>
-            </View>
+                <View style={{height: 30}}/>
+            </ScrollView>
         </View >
-        // </ScrollView>
     );
 }
 
@@ -59,7 +58,7 @@ const styles = {
     },
     header: {
         flexDirection: "row",
-        marginTop: 65,
+        marginTop: 60,
         // backgroundColor: "black",
         justifyContent: "flex-start",
         alignSelf: "center",
@@ -90,7 +89,7 @@ const styles = {
     button: {
         backgroundColor: "#d2a24c",
         height: 70,
-        width: Math.round(Dimensions.get('window').width) - 200,
+        width: 230,
         marginBottom: 10,
         borderRadius: 10,
         justifyContent: "center",
@@ -140,7 +139,7 @@ const styles = {
         marginBottom: 25,
         borderRadius: 10,
         alignSelf: "center",
-        marginTop: 100
+        marginTop: 50
     },
     rule: {
         fontSize: 25,
