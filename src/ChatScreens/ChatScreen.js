@@ -306,9 +306,9 @@ export default function ChatScreen({ route, navigation, showNotification }) {
               <TouchableOpacity style={styles.orderTipCard} onPress={() => {startWalkthrough(speaking);setModalVisible(!modalVisible);}}>
                 <Text style={styles.modalText}>長按對話框聆聽訊息</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.orderTipCard} onPress={() => {setShouldShowGifSlide(true);setModalVisible(!modalVisible);}}>
+              {/* <TouchableOpacity style={styles.orderTipCard} onPress={() => {setShouldShowGifSlide(true);setModalVisible(!modalVisible);}}>
                 <Text style={styles.modalText}>右滑回上一頁</Text>
-              </TouchableOpacity>
+              </TouchableOpacity> */}
             </View>
           </View>
         </Modal>

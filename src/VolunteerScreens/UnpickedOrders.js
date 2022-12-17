@@ -36,7 +36,7 @@ export default function UnpickedOrders({ route, navigation }) {
         <Text style={styles.pageTitle}>待接服務</Text>
       </View>
       <ScrollView showsVerticalScrollIndicator={false} style={{width: Math.round(Dimensions.get('window').width), paddingHorizontal: 25}}>
-        <View style={{height: 10}}></View>
+        <View style={{height: 15}}></View>
         {order.map((type, index) => {
           const imgUrl = route.params.baseUrl + '/' + type.imagePath
           console.log("[UNPICKED] IMG: " + type.imagePath)

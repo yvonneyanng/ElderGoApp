@@ -43,7 +43,7 @@ import ServiceRecord from '../VolunteerScreens/ServiceRecord';
 import RecordDetail from "../VolunteerScreens/RecordDetail";
 
 const Stack = createStackNavigator();
-const url = "https://d708-2001-b011-800c-1956-8438-789f-54a8-fbb3.jp.ngrok.io"
+const url = "https://67c2-59-120-78-232.jp.ngrok.io"
 
 export default function AuthStack() {
   const { user, setUser } = useContext(AuthContext);
@@ -58,20 +58,19 @@ export default function AuthStack() {
     });
   }, [initializing, setUser]);
 
-  // if(user){
-  useEffect(() => {
-    registerForPushNotificationsAsync().then((token) => {
-      kitty.updateCurrentUser((user) => {
-        user.properties = {
-          ...user.properties,
-          'expo-push-token': token,
-        };
+  /**/ 
+  // useEffect(() => {
+  //   registerForPushNotificationsAsync().then((token) => {
+  //     kitty.updateCurrentUser((user) => {
+  //       user.properties = {
+  //         ...user.properties,
+  //         'expo-push-token': token,
+  //       };
 
-        return user;
-      });
-    });
-  }, []);
-  // }
+  //       return user;
+  //     });
+  //   });
+  // }, []);
 
   if (loading) {
     return <Loading />;
