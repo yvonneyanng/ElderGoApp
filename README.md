@@ -4,15 +4,8 @@ This is an app created for the elderly. It provides services such as placing car
 
 <img src="https://github.com/yvonneyanng/ElderGoApp/assets/87819342/3abc6788-c043-463e-9ea9-b64a64667ca2" width="500">
 
-### First cloned
+### Try out the frontend design
 ```diff
-1. open project folder in VS Code\
-2. run "npm install" in terminal ("npm install --legacy-peer-deps" instaed if error is shown)
-```
-
-### Normal process
-```diff
-1. open project folder in VS Code\
-2. run "expo start" in terminal\
-3. scan the QR code to open Expo Go on phone (install Expo Go first if it hasn't been installed yet)
+npm install --legacy-peer-deps
+expo start
 ```
