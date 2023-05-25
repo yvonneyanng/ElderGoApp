@@ -1,7 +1,7 @@
 # Elder Go
 ### Introduction
 This is an app created for the elderly. It provides services such as placing caring order, chatroom and memory card game. Check out the introduction video: https://youtu.be/qB3-S6uljaE.
-![alt text](https://ibb.co/9srY9Xq)
+![alt text](https://ibb.co/zGGd04Z)
 ### First cloned
 ```diff
 1. open project folder in VS Code\
