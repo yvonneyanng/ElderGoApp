@@ -1,7 +1,8 @@
 # Elder Go
 ### Introduction
 This is an app created for the elderly. It provides services such as placing caring order, chatroom and memory card game. Check out the introduction video: https://youtu.be/qB3-S6uljaE.
-![poster](https://github.com/yvonneyanng/ElderGoApp/assets/87819342/3abc6788-c043-463e-9ea9-b64a64667ca2=100x80)
+
+<img src="https://github.com/yvonneyanng/ElderGoApp/assets/87819342/3abc6788-c043-463e-9ea9-b64a64667ca2" width="500">
 
 ### First cloned
 ```diff
