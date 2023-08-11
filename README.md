@@ -1,4 +1,4 @@
-# Elder Go
+# Care Jet
 ### Introduction
 This is an app created for the elderly. It provides services such as placing caring order, chatroom and memory card game. Check out the introduction video: https://youtu.be/qB3-S6uljaE.
 
